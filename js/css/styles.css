@@ -1,0 +1,153 @@
+::-webkit-scrollbar
+{
+	width: 10px;
+	height: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #999999;
+}
+/* 
+.tabs {
+    position: relative;   
+    min-height:130px; 
+    clear: both;
+    margin: 25px 0;
+  }
+  .tab {
+    float: left;
+  }
+  .tab label {
+    background: #eee; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    margin-left: -1px; 
+    position: relative;
+    left: 1px; 
+  }
+  .tab [type=radio] {
+    display: none;   
+  }
+  .content {
+    position: absolute;
+    top: 28px;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    border: 1px solid #ccc; 
+  }
+  [type=radio]:checked ~ label {
+    background: white;
+    border-bottom: 1px solid white;
+    z-index: 2;
+  }
+  [type=radio]:checked ~ label ~ .content {
+    z-index: 1;
+  } */
+
+  section{
+    text-align:center;
+  }
+  
+
+  #clockdiv{
+    border:1px solid black;
+      font-family: sans-serif;
+      color: #ffffff;
+      display: inline-block;
+      font-weight: 100;
+      text-align: center;
+      font-size: 22px;
+      padding: 20px;
+      margin-top:20px;
+     
+  }
+  
+  #clockdiv > div{
+      padding: 15px;
+      border-radius: 3px;
+    
+      display: inline-block;
+      margin-left: 10px;
+  }
+  
+  #clockdiv div > span{
+      padding: 15px;
+      border-radius: 3px;
+      background: #ffffff;
+      display: inline-block;
+    color:black
+  }
+  
+  .smalltext{
+      padding-top: 5px;
+      font-size: 12px;
+    color:black
+  }
+
+
+  /* ...cropper.js */
+
+  img {
+    max-width: 100%; /* This rule is very important, please do not ignore this! */
+  }
+  
+  #canvas {
+    height: 600px;
+    width: 600px;
+    background-color: #ffffff;
+    cursor: default;
+    border: 1px solid black;
+  }
+
+
+
+
+  /* ......tabs..... */
+
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+  }
+  .tab{
+    text-decoration:none;
+    color:inherit;
+    padding:7px 14px;
+    transition:opacity 0.3s;
+    display:inline-block;
+    border-radius:3px;
+    margin-right:10px;
+  }
+  .tab.tab-active{
+    background-color:#0d94e6;
+    color:white;
+  }
+  .tab-content{
+    padding:6px 12px;
+    min-height:100px;
+    animation:fadeEffect 1s;
+  }
+  @keyframes fadeEffect{
+    from{
+      opacity:0;
+    }
+    to{
+      opacity:1;
+    }
+  }
+  
+  .gjs-dashed input, .gjs-dashed select{
+    width: 25%;
+    padding: 7px 11px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
