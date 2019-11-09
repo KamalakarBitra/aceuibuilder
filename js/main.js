@@ -1,6 +1,6 @@
 originUrl = window.location.origin.split(':');
 dynamicUrl = originUrl[0] + ":" + originUrl[1] + ":5002";
-dynamicUrl = 'http://192.168.0.169:5002'
+dynamicUrl = 'http://54.224.111.149:5002'
 var queue = getUrlParameter('queue');
 
 var getUrlParameter = function getUrlParameter(sParam) {
