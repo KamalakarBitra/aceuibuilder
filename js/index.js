@@ -91,7 +91,11 @@ editor.DomComponents.addType('text', {
     },
   },
 });
-
+editor.setComponents({
+    type: 'tabs',
+     classes:['cls'],
+     // content: 'New component'
+   });
 
 let stylePrefix = 'gjs-';
 const basicStyle = true;
