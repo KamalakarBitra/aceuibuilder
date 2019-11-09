@@ -15,10 +15,83 @@ var editor = grapesjs.init({
 
 
 });
-
-grapesjs.plugins.add('grapesjs-tabs', function (editor) {
-
+ 
+editor.DomComponents.addType('tab-content', {
+  
+    model: {
+      defaults: {
+        traits: [
+         
+          'name',
+          'placeholder',
+          {
+            type: 'select', 
+            label: 'Type', 
+            name: 'type', 
+            options: [
+              { id: 'text', name: 'Text'},
+              { id: 'email', name: 'Email'},
+              { id: 'password', name: 'Password'},
+              { id: 'number', name: 'Number'},
+            ]
+          }, {
+            type: 'checkbox',
+            name: 'required',
+        }],
+       
+      },
+    },
 });
+
+
+editor.DomComponents.addType('tab', {
+  
+  model: {
+    defaults: {
+      traits: [
+        {
+          type: 'select', 
+          label: 'Type', 
+          name: 'type', 
+          options: [
+            { id: 'text', name: 'Text'},
+            { id: 'email', name: 'Email'},
+            { id: 'password', name: 'Password'},
+            { id: 'number', name: 'Number'},
+          ]
+        }, {
+          type: 'text',
+          name: 'source',
+      }],
+     
+    },
+  },
+});
+
+editor.DomComponents.addType('text', {
+  
+  model: {
+    defaults: {
+      traits: [
+        {
+          type: 'select', 
+          label: 'select', 
+          name: 'type', 
+          options: [
+            { id: 'text', name: 'Text'},
+            { id: 'email', name: 'Email'},
+            { id: 'password', name: 'Password'},
+            { id: 'number', name: 'Number'},
+          ]
+        }, {
+          type: 'text',
+          name: 'source',
+      }],
+     
+    },
+  },
+});
+
 
 let stylePrefix = 'gjs-';
 const basicStyle = true;
