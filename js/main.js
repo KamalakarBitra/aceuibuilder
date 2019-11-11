@@ -1,9 +1,12 @@
+debugger
 originUrl = window.location.origin.split(':');
 dynamicUrl = originUrl[0] + ":" + originUrl[1] + ":5002";
 dynamicUrl = 'http://54.224.111.149:5002'
-var queue = getUrlParameter('queue');
+var queueid = getUrlParameter('queueid');
+var queue_unique_name = getUrlParameter('queue_unique_name');
+var tenant_id = getUrlParameter('tenant_id')
 
-var getUrlParameter = function getUrlParameter(sParam) {
+function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
         sParameterName,
@@ -17,6 +20,29 @@ var getUrlParameter = function getUrlParameter(sParam) {
         }
     }
 };
+
+if (tenant_id) {
+    sendObj = {}
+    sendObj.tenant_id = tenant_id;
+    sendObj.flag = 'fetch';
+    sendObj.queueid = queueid;
+
+    var settings11 = {
+        "async": true,
+        "crossDomain": true,
+        "url": dynamicUrl + "/builder_fields",
+        "method": "POST",
+        "processData": false,
+        "contentType": "application/json",
+        "data": JSON.stringify(sendObj)
+    };
+
+    $.ajax(settings11).done(function (resp) {
+        console.log(resp);
+        getCall(resp)
+    })
+}
+
 
 
 function sampleClick(comps) {
@@ -36,10 +62,10 @@ function sampleClick(comps) {
                         tab_name___ = allTabs[comps[j].attributes.id]
                         obj = {}
                         obj["display_name"] = attrs.display_name ? attrs.display_name : ''
-                        obj["unique_name"] = attrs.unique_name ? attrs.unique_name + '_' + tab_name___ : ''
+                        obj["unique_name"] = attrs.unique_name ? attrs.unique_name + '_' + tab_name___['text'] : ''
                         obj["outline"] = attrs.outline ? attrs.outline : ''
                         obj["mandatory"] = attrs.mandatory ? attrs.mandatory : ''
-                        obj["tab_name"] = tab_name___ ? tab_name___ : ''
+                        obj["tab_name"] = tab_name___['text'] ? tab_name___['text'] : ''
                         obj["editable"] = attrs.editable ? attrs.editable : ''
                         obj["type"] = attrs.type ? attrs.type : ''
                         obj["is_dropdown"] = attrs.is_dropdown ? attrs.is_dropdown : ''
@@ -49,8 +75,7 @@ function sampleClick(comps) {
                         obj["pattern"] = attrs.pattern ? attrs.pattern : ''
                         obj["max_date"] = attrs.max_date ? attrs.max_date : ''
                         obj["confidence_threshold"] = attrs.confidence_threshol ? attrs.confidence_threshol : ''
-                        obj["Consider field for export"] = attrs['Consider field for export'] ? attrs['Consider field for export'] : ''
-                        obj['queue_id'] = queue
+                        obj["Consider field for export"] = attrs["field_for_export"] ? attrs["field_for_export"] : ''
                         tab_fields.push(obj)
                     }
                 } else if (comps[j].type == 'tab-container') {
@@ -63,10 +88,14 @@ function sampleClick(comps) {
                             tab_name = tab_names[k].components[0].content;
                         }
                         id = tab_names[k].attributes.href.replace('#', '')
-                        allTabs[id] = tab_name
+                        allTabs[id] = {
+                            text: tab_name,
+                            source: tab_names[k].attributes.source,
+                        }
                         final_tab.push({
                             id: (k + 1),
-                            text: tab_name
+                            text: tab_name,
+                            source: tab_names[k].attributes.source,
                         })
                     }
                 }
@@ -80,12 +109,14 @@ function sampleClick(comps) {
 
     sendObj = {
         flag: 'save',
-        tenant_id: 'AB',
-        data: {
-            tabs: final_tab,
-            fields: tab_fields
-        }
     }
+    sendObj.data = {
+        tabs: final_tab,
+        fields: tab_fields
+    }
+    sendObj.queueid = queueid
+    sendObj.template = JSON.stringify(editor.getComponents())
+    sendObj.tenant_id = tenant_id
 
     var settings11 = {
         "async": true,

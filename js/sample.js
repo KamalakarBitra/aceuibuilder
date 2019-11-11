@@ -265,8 +265,8 @@ properties = [
 			},
 			{
 				type: 'checkbox',
-				name: 'Consider field for export',
-				label: 'Consider field for export'
+				name: 'field_for_export',
+				label: 'Export Field'
 			}
 		]
 	},

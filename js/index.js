@@ -1,3 +1,4 @@
+
 var editor = grapesjs.init({
     showOffsets: 1,
     showDevices: 0,
@@ -12,90 +13,95 @@ var editor = grapesjs.init({
     plugins: ['grapesjs-tabs'],
     pluginsOpts: {
     }
-
-
 });
- 
+
+function getCall(val) {
+    console.log(val.template);
+    if (val.template) {
+        editor.setComponents(JSON.parse(val.template))
+    }
+}
 editor.DomComponents.addType('tab-content', {
-  
+
     model: {
-      defaults: {
-        traits: [
-         
-          'name',
-          'placeholder',
-          {
-            type: 'select', 
-            label: 'Type', 
-            name: 'type', 
-            options: [
-              { id: 'text', name: 'Text'},
-              { id: 'email', name: 'Email'},
-              { id: 'password', name: 'Password'},
-              { id: 'number', name: 'Number'},
-            ]
-          }, {
-            type: 'checkbox',
-            name: 'required',
-        }],
-       
-      },
+        defaults: {
+            traits: [
+                'name',
+                'placeholder',
+                {
+                    type: 'select',
+                    label: 'Type',
+                    name: 'type',
+                    options: [
+                        { id: 'text', name: 'Text' },
+                        { id: 'email', name: 'Email' },
+                        { id: 'password', name: 'Password' },
+                        { id: 'number', name: 'Number' },
+                    ]
+                }, {
+                    type: 'checkbox',
+                    name: 'required',
+                }],
+
+        },
     },
 });
 
 
 editor.DomComponents.addType('tab', {
-  
-  model: {
-    defaults: {
-      traits: [
-        {
-          type: 'select', 
-          label: 'Type', 
-          name: 'type', 
-          options: [
-            { id: 'text', name: 'Text'},
-            { id: 'email', name: 'Email'},
-            { id: 'password', name: 'Password'},
-            { id: 'number', name: 'Number'},
-          ]
-        }, {
-          type: 'text',
-          name: 'source',
-      }],
-     
+    model: {
+        defaults: {
+            traits: [
+                {
+                    type: 'select',
+                    label: 'Type',
+                    name: 'type',
+                    options: [
+                        { id: 'text', name: 'Text' },
+                        { id: 'email', name: 'Email' },
+                        { id: 'password', name: 'Password' },
+                        { id: 'number', name: 'Number' },
+                    ]
+                },
+                {
+                    type: 'text',
+                    name: 'source',
+                    label: 'Source'
+                },
+            ],
+
+        },
     },
-  },
 });
 
 editor.DomComponents.addType('text', {
-  
-  model: {
-    defaults: {
-      traits: [
-        {
-          type: 'select', 
-          label: 'select', 
-          name: 'type', 
-          options: [
-            { id: 'text', name: 'Text'},
-            { id: 'email', name: 'Email'},
-            { id: 'password', name: 'Password'},
-            { id: 'number', name: 'Number'},
-          ]
-        }, {
-          type: 'text',
-          name: 'source',
-      }],
-     
+
+    model: {
+        defaults: {
+            traits: [
+                {
+                    type: 'select',
+                    label: 'select',
+                    name: 'type',
+                    options: [
+                        { id: 'text', name: 'Text' },
+                        { id: 'email', name: 'Email' },
+                        { id: 'password', name: 'Password' },
+                        { id: 'number', name: 'Number' },
+                    ]
+                }, {
+                    type: 'text',
+                    name: 'source',
+                }],
+
+        },
     },
-  },
 });
 editor.setComponents({
     type: 'tabs',
-     classes:['cls'],
-     // content: 'New component'
-   });
+    classes: ['cls'],
+    // content: 'New component'
+});
 
 let stylePrefix = 'gjs-';
 const basicStyle = true;
