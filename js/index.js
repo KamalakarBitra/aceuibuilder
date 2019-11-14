@@ -1,4 +1,24 @@
+dynamicUrl = 'http://54.224.111.149:5002'
 
+var queueid = getUrlParameter("queueid");
+var queue_unique_name = getUrlParameter('queue_unique_name');
+var tenant_id = getUrlParameter('tenant_id');
+
+function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+var all_options;
 var editor = grapesjs.init({
     showOffsets: 1,
     showDevices: 0,
@@ -9,20 +29,119 @@ var editor = grapesjs.init({
     storageManager: {
         autoload: 0
     },
-
     plugins: ['grapesjs-tabs'],
     pluginsOpts: {
     }
 });
 
-function getCall(val) {
-    console.log(val.template);
-    if (val.template) {
-        editor.setComponents(JSON.parse(val.template))
-    }
-}
-editor.DomComponents.addType('tab-content', {
+function sampleClick(comps) {
+    console.log(comps);
+    a = JSON.parse(comps)
+    allTabs = {};
+    final_tab = []
+    tab_fields = []
 
+    sendObj = {
+        flag: 'save_layout',
+    }
+    sendObj.classification = 'Layout'
+    sendObj.queueid = sessionStorage.getItem('id')
+    sendObj.template = JSON.stringify(editor.getComponents())
+    sendObj.tenant_id = tenant_id
+
+    console.log(sendObj);
+
+    var settings11 = {
+        "async": true,
+        "crossDomain": true,
+        "url": dynamicUrl + "/builder_components",
+        "method": "POST",
+        "processData": false,
+        "contentType": "application/json",
+        "data": JSON.stringify(sendObj)
+    };
+
+    $.ajax(settings11).done(function (resp) {
+        console.log(resp);
+
+    })
+
+}
+
+function getCall(res) {
+    // console.log(val.template);
+    
+    data = res.data.components;
+    all_options = res.data.dropdown;
+    arr = []
+    properties = []
+    for (i = 0; i < data.length; i++) {
+        for (category in data[i]) {
+            for (component in data[i][category]) {
+                if (component != 'tabs') {
+                    obj = {
+                        id: (i + 1),
+                        label: component,
+                        category: category,
+                        content: {
+                            tagName: 'input',
+                            components: '<input type="text">',
+                            type: component,
+                            attributes: {
+                                placeholder: 'Field'
+                            }
+                        },
+                        icon: 'fa fa-window-minimize'
+                    }
+                    arr.push(obj);
+                    propObj = {}
+                    propObj.id = component
+                    propObj.prop = []
+                    for (j = 0; j < data[i][category][component].length; j++) {
+                        pobj = {}
+                        pobj.type = getType(data[i][category][component][j].attribute_master_type);
+                        pobj.options = getOptions(data[i][category][component][j])
+                        pobj.name = data[i][category][component][j].attribute_master_name
+                        pobj.label = data[i][category][component][j].attribute_master_name
+                        propObj.prop.push(pobj)
+                    }
+                    properties.push(propObj)
+                }
+            }
+        }
+        
+    }
+    console.log(arr, properties);
+
+    generateBlocks(arr, properties, res.template);
+}
+
+function getType(ty) {
+    type = ''
+    switch (ty) {
+        case "input_text":
+            type = "text";
+            break;
+        case "dynamic_select":
+        case "static_select":
+            type = "select";
+            break;
+    }
+    return type
+}
+
+function getOptions(dt) {
+    options = [];
+    if (all_options[dt.attribute_master_id]) {
+        for (let i = 0; i < all_options[dt.attribute_master_id].length; i++) {
+            const element = all_options[dt.attribute_master_id][i];
+            options.push({ name: element.attribute_name, value: element.attribute_value})
+        }
+    }
+    return options;
+}
+
+editor.DomComponents.addType('tab-content', {
     model: {
         defaults: {
             traits: [
@@ -193,38 +312,44 @@ const attrsRow = attrsToString(rowAttr);
 const attrsCell = attrsToString(colAttr);
 
 
-
-console.log(blocks);
-
-for (i = 0; i < blocks.length; i++) {
-    block = blocks[i];
-    editor.BlockManager.add(block.id, {
-        label: block.label,
-        category: block.category,
-        attributes: {
-            class: block.icon
-        },
-        content: block.content,
-    });
+function generateBlocks(blocks, properties, template) {
+    for (i = 0; i < blocks.length; i++) {
+        block = blocks[i];
+        editor.BlockManager.add(block.id, {
+            label: block.label,
+            category: block.category,
+            attributes: {
+                class: block.icon
+            },
+            content: block.content,
+        });
+    }
+    generateProperties(properties, template);
 }
 
-
-for (i = 0; i < properties.length; i++) {
-    prop = properties[i];
-    editor.DomComponents.addType(prop.id, {
-        isComponent: el => el.tagName == 'label',
-        model: {
-            defaults: {
-                traits: prop.prop,
-                attributes: {
-                    type: 'text',
-                    required: true
+function generateProperties(properties) {
+    console.log(properties)
+    for (i = 0; i < properties.length; i++) {
+        prop = properties[i];
+        editor.DomComponents.addType(prop.id, {
+            isComponent: el => el.tagName == 'label',
+            model: {
+                defaults: {
+                    traits: prop.prop,
+                    attributes: {
+                        type: 'text',
+                        required: true
+                    },
                 },
             },
-        },
-    });
-
+        });
+    }
+    
+    if (template) {
+        editor.setComponents(JSON.parse(template))
+    }
 }
+
 
 function addfield() {
     // alert('hello')
@@ -273,172 +398,3 @@ const TOOLBAR_CELL = [{
 }
 ];
 const getCellToolbar = () => TOOLBAR_CELL;
-
-
-const components = this._editor.DomComponents;
-const text = components.getType('text');
-components.addType('cell', {
-    model: text.model.extend({
-        defaults: Object.assign({}, text.model.prototype.defaults, {
-            type: 'cell',
-            tagName: 'td',
-            draggable: ['tr'],
-
-        }),
-    },
-
-        {
-            isComponent(el) {
-                let result;
-                const tag = el.tagName;
-                if (tag == 'TD' || tag == 'TH') {
-                    result = {
-                        type: 'cell',
-                        tagName: tag.toLowerCase()
-                    };
-                }
-                return result;
-            }
-        }),
-    view: text.view,
-});
-
-
-
-this._editor.on('component:selected', m => {
-    const compType = m.get('type');
-    switch (compType) {
-        case 'cell':
-            m.set('toolbar', getCellToolbar());
-    }
-});
-
-
-
-this._editor.Commands.add('table-insert-row-above', editor => {
-    const selected = editor.getSelected();
-
-    if (selected.is('cell')) {
-        const rowComponent = selected.parent();
-        const rowIndex = rowComponent.collection.indexOf(rowComponent);
-        const cells = rowComponent.components().length;
-        const rowContainer = rowComponent.parent();
-
-        rowContainer.components().add({
-            type: 'row',
-            components: [...Array(cells).keys()].map(i => ({
-                type: 'cell',
-                content: 'New Cell',
-            }))
-        }, {
-            at: rowIndex
-        });
-    }
-});
-
-
-// .....file upload ...
-
-
-function myFunction() {
-    var x = document.getElementById("myFile");
-    var txt = "";
-    if ('files' in x) {
-        if (x.files.length == 0) {
-            txt = "Select one or more files.";
-        } else {
-            for (var i = 0; i < x.files.length; i++) {
-                txt += "<br><strong>" + (i + 1) + ". file</strong><br>";
-                var file = x.files[i];
-                if ('name' in file) {
-                    txt += "name: " + file.name + "<br>";
-                }
-                if ('size' in file) {
-                    txt += "size: " + file.size + " bytes <br>";
-                }
-            }
-        }
-    } else {
-        if (x.value == "") {
-            txt += "Select one or more files.";
-        } else {
-            txt += "The files property is not supported by your browser!";
-            txt += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
-        }
-    }
-    document.getElementById("demo").innerHTML = txt;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ....datetimepicker......
-$(function () {
-    $('#datetimepicker1').datetimepicker();
-});
-
-
-
-
-// Show borders by default
-pn.getButton('options', 'sw-visibility').set('active', 1);
-
-// .....cropper.....
-
-var canvas = $("#canvas"),
-    context = canvas.get(0).getContext("2d"),
-    $result = $('#result');
-
-$('#fileInput').on('change', function () {
-    if (this.files && this.files[0]) {
-        if (this.files[0].type.match(/^image\//)) {
-            var reader = new FileReader();
-            reader.onload = function (evt) {
-                var img = new Image();
-                img.onload = function () {
-                    context.canvas.height = img.height;
-                    context.canvas.width = img.width;
-                    context.drawImage(img, 0, 0);
-                    var cropper = canvas.cropper({
-                        aspectRatio: 16 / 9
-                    });
-                    $('#btnCrop').click(function () {
-                        // Get a string base 64 data url
-                        var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png");
-                        $result.append($('<img>').attr('src', croppedImageDataURL));
-                    });
-                    $('#btnRestore').click(function () {
-                        canvas.cropper('reset');
-                        $result.empty();
-                    });
-                };
-                img.src = evt.target.result;
-            };
-            reader.readAsDataURL(this.files[0]);
-        } else {
-            alert("Invalid file type! Please select an image file.");
-        }
-    } else {
-        alert('No file(s) selected.');
-    }
-});
-
-
-
-// editor.setStyle(JSON.parse([blocks]))
-
-// editor.setComponent([components])

@@ -4518,8 +4518,8 @@ span.CodeMirror-selectedtext {
 }
 
 .gjs-label-wrp {
-    width: 30%;
-    min-width: 30%
+    width: 50%;
+    min-width: 50%
 }
 
 .gjs-field-wrp {
@@ -4651,14 +4651,33 @@ span.CodeMirror-selectedtext {
 .gjs-cv-canvas {
     background-color: rgba(0, 0, 0, 0.15);
     box-sizing: border-box;
-    width: 78%;
+    width: calc(100% - 40%);
     height: calc(100% - 40px);
     bottom: 0;
     overflow: hidden;
     z-index: 1;
     position: absolute;
-    left: 0;
-    top: 40px
+    left: 15%;
+    top: 40px;
+
+}
+
+.container-box-view {
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    width: 15%;
+    z-index: 9;
+    top: 40px;
+}
+.class-trait-view {
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    width: 25%;
+    z-index: 9;
+    top: 40px;
+    overflow-y: auto;
 }
 
 .gjs-cv-canvas.gjs-is__grab .gjs-cv-canvas__frames,
@@ -4963,7 +4982,7 @@ div.gjs-com-hover-move {
 .gjs-com-badge-red,
 .gjs-badge {
     pointer-events: none;
-    background-color: #3b97e3;
+    background-color: #ff7c10;
     color: #fff;
     padding: 2px 5px;
     position: absolute;
@@ -5011,14 +5030,14 @@ div.gjs-com-hover-move {
     outline: none
 }
 
-.gjs-pn-panel {
+/* .gjs-pn-panel {
     display: inline-block;
     position: absolute;
     box-sizing: border-box;
     text-align: center;
     padding: 5px;
     z-index: 3
-}
+} */
 
 .gjs-pn-panel .icon-undo,
 .gjs-pn-panel .icon-redo {
@@ -5035,25 +5054,29 @@ div.gjs-com-hover-move {
 }
 
 .gjs-pn-options {
-    right: 22%;
-    top: 0
+    position: absolute;
+    top: 9px;
+    right: 10px;
 }
 
 .gjs-pn-views {
     border-bottom: 2px solid rgba(0, 0, 0, 0.2);
     right: 0;
-    width: 22%;
-    z-index: 4
+    /* width: 22%; */
+    z-index: 4;
+    right: 15%;
+    position: absolute;
+    top: 5px;
 }
 
-.gjs-pn-views-container {
+/* .gjs-pn-views-container {
     height: 100%;
     padding: 42px 0 0;
     right: 0;
     width: 22%;
     overflow: auto;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2)
-}
+} */
 
 .gjs-pn-buttons {
     text-align: right;

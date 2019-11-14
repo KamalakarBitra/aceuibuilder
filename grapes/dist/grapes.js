@@ -1,3 +1,22 @@
+var queueid = getUrlParameter("queueid");
+var queue_unique_name = getUrlParameter('queue_unique_name');
+var tenant_id = getUrlParameter('tenant_id')
+
+function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
 (function webpackUniversalModuleDefinition(root, factory) {
     if (typeof exports === 'object' && typeof module === 'object')
         module.exports = factory();
@@ -1614,7 +1633,9 @@
                         // is automatically generated and assigned for you.
                         var Model = Backbone.Model = function (attributes, options) {
                             var attrs = attributes || {};
+                            
                             options || (options = {});
+
                             this.cid = _.uniqueId(this.cidPrefix);
                             this.attributes = {};
                             if (options.collection) this.collection = options.collection;
@@ -22646,7 +22667,10 @@
 /* harmony default export */ __webpack_exports__["default"] = (backbone__WEBPACK_IMPORTED_MODULE_0___default.a.View.extend({
                     tagName: 'iframe',
                     attributes: {
-                        allowfullscreen: 'allowfullscreen'
+                        'allowfullscreen': 'allowfullscreen',
+                        'queueid': queueid,
+                        'queue_unique_name': queue_unique_name,
+                        'tenant_id': tenant_id
                     },
                     initialize: function initialize(o) {
                         Object(underscore__WEBPACK_IMPORTED_MODULE_1__["bindAll"])(this, 'updateOffset');
@@ -25604,6 +25628,7 @@
                             bm.render();
                             var id = 'views-container';
                             var blocks = document.createElement('div');
+                            blocks.className = 'container-box-view'
                             var panels = pn.getPanel(id) || pn.addPanel({
                                 id: id
                             });
@@ -25612,11 +25637,11 @@
                             this.blocks = blocks;
                         }
 
-                        this.blocks.style.display = 'block';
+                        // this.blocks.style.display = 'block';
                     },
                     stop: function stop() {
                         var blocks = this.blocks;
-                        blocks && (blocks.style.display = 'none');
+                        // blocks && (blocks.style.display = 'none');
                     }
                 });
 
@@ -25776,7 +25801,7 @@
                         if (!this.$cn) {
                             var tmView = tm.getTraitsViewer();
                             var confTm = tm.getConfig();
-                            this.$cn = $('<div></div>');
+                            this.$cn = $('<div class="class-trait-view"></div>');
                             this.$cn2 = $('<div></div>');
                             this.$cn.append(this.$cn2);
                             this.$header = $('<div>').append("<div class=\"".concat(confTm.stylePrefix, "header\">").concat(confTm.textNoElement, "</div>"));
@@ -37845,38 +37870,40 @@
 
                     ]
                     },
-
-                    
-                    
-                 
-    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     {
                         id: 'views',
-                        buttons: [{
-                            id: otm,
-                            className: 'fa fa-cog',
-                            command: otm,
-                            togglable: 0,
-                            attributes: {
-                                title: 'Settings'
+                        buttons: [
+                            {
+                                id: otm,
+                                className: 'fa fa-cog',
+                                // active: true,
+                                command: otm,
+                                togglable: 0,
+                                attributes: {
+                                    title: 'Settings'
+                                }
+                            },
+                            // {
+                            // id: osm,
+                            // className: 'fa fa-paint-brush',
+                            // command: osm,
+                            // active: true,
+                            // togglable: 0,
+                            // attributes: {
+                            //     title: 'Open Style Manager'
+                            // }
+                            // },
+                            {
+                                id: obl,
+                                active: true,
+                                className: 'fa fa-th-large',
+                                command: obl,
+                                togglable: 0,
+                                attributes: {
+                                    title: 'Open Blocks'
+                                }
                             }
-                        }, {
-                            id: obl,
-                            active: true,
-                            className: 'fa fa-th-large',
-                            command: obl,
-                            togglable: 0,
-                            attributes: {
-                                title: 'Open Blocks'
-                            }
-                        }]
+                        ]
                     }],
                     // Editor model
                     em: null,
@@ -38635,7 +38662,7 @@
                         this.id = this.pfx + model.get('id');
                         this.listenTo(model, 'change:appendContent', this.appendContent);
                         this.listenTo(model, 'change:content', this.updateContent);
-                        this.listenTo(model, 'change:visible', this.toggleVisible);
+                        // this.listenTo(model, 'change:visible', this.toggleVisible);
                         model.view = this;
                     },
 
@@ -38653,12 +38680,12 @@
                         this.$el.html(this.model.get('content'));
                     },
                     toggleVisible: function toggleVisible() {
-                        if (!this.model.get('visible')) {
-                            this.$el.addClass("".concat(this.ppfx, "hidden"));
-                            return;
-                        }
-
-                        this.$el.removeClass("".concat(this.ppfx, "hidden"));
+                        // if (!this.model.get('visible')) {
+                        //     this.$el.addClass("".concat(this.ppfx, "hidden"));
+                        //     return;
+                        // }
+                        return;
+                        // this.$el.removeClass("".concat(this.ppfx, "hidden"));
                     },
                     attributes: function attributes() {
                         return this.model.get('attributes');
@@ -38726,7 +38753,7 @@
                             }, resizable));
 
                             resizer.blur = function () { };
-
+                            
                             resizer.focus(this.el);
                         }
                     },
@@ -38830,7 +38857,6 @@
                     },
                     render: function render() {
                         var _this = this;
-
                         var $el = this.$el;
                         var frag = document.createDocumentFragment();
                         $el.empty();
