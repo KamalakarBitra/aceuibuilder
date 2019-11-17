@@ -37,37 +37,90 @@ var editor = grapesjs.init({
 
 function sampleClick(comps) {
     console.log(comps);
-    a = JSON.parse(comps)
-    allTabs = {};
-    final_tab = []
-    tab_fields = []
+    output = [];
+    convertor(JSON.parse(comps), output)
+    
+    
+    
+    
+    
+    // a = JSON.parse(comps)
+    // allTabs = {};
+    // final_tab = []
+    // tab_fields = []
 
-    sendObj = {
-        flag: 'save_layout',
-    }
-    sendObj.classification = 'Layout'
-    sendObj.queueid = sessionStorage.getItem('id')
-    sendObj.template = JSON.stringify(editor.getComponents())
-    sendObj.tenant_id = tenant_id
+    // sendObj = {
+    //     flag: 'save_layout',
+    // }
+    // sendObj.classification = 'Layout'
+    // sendObj.queueid = sessionStorage.getItem('id')
+    // sendObj.template = JSON.stringify(editor.getComponents())
+    // sendObj.tenant_id = tenant_id
 
-    console.log(sendObj);
+    // console.log(sendObj);
 
-    var settings11 = {
-        "async": true,
-        "crossDomain": true,
-        "url": dynamicUrl + "/builder_components",
-        "method": "POST",
-        "processData": false,
-        "contentType": "application/json",
-        "data": JSON.stringify(sendObj)
-    };
+    // var settings11 = {
+    //     "async": true,
+    //     "crossDomain": true,
+    //     "url": dynamicUrl + "/builder_components",
+    //     "method": "POST",
+    //     "processData": false,
+    //     "contentType": "application/json",
+    //     "data": JSON.stringify(sendObj)
+    // };
 
-    $.ajax(settings11).done(function (resp) {
-        console.log(resp);
+    // $.ajax(settings11).done(function (resp) {
+    //     console.log(resp);
 
-    })
+    // })
+    
+    
 
 }
+
+function convertor(_input, output) {
+    
+    
+    if ($.type(_input) == "object") {
+        keys_ = Object.keys(_input)
+        if (keys_.length == 1 || keys_[0] == 'content') {
+        }
+        else {
+            try {
+                if (!_input.attributes && _input.components.length == 1) {
+                    _input = _input.components[0];
+                }            
+                var get_id = _input.attributes.id;
+                ele = document.getElementById("add-custom-id").contentWindow.document.getElementById(get_id)
+                parent_id = ele.parentNode.id
+            } catch (error) {
+                parent_id = null
+            }
+            if (!_input.attributes) {
+                _input.attributes = {}
+            }
+            _input.attributes.parent_id = parent_id
+            temp_push = Object.assign({}, _input);
+            delete temp_push['components'];
+            if (_input.components) {
+             output.push(temp_push)
+            }
+            
+        }
+    }
+    if ($.type(_input) == "array") {
+        for (var i = 0; i < _input.length; i++) {
+            output = convertor(_input[i], output)
+        }
+    }
+    else if ($.type(_input) == "object" && "components" in _input) {
+        output = convertor(_input["components"], output)
+    }
+    console.log(JSON.stringify(output));
+    return output
+}
+
+
 
 function getCall(res) {
     // console.log(val.template);
@@ -140,6 +193,40 @@ function getOptions(dt) {
         }
     }
     return options;
+}
+
+function generateBlocks(blocks, properties, template) {
+    for (i = 0; i < blocks.length; i++) {
+        block = blocks[i];
+        editor.BlockManager.add(block.id, {
+            label: block.label,
+            category: block.category,
+            attributes: {
+                class: block.icon
+            },
+            content: block.content,
+        });
+    }
+    generateProperties(properties, template);
+}
+
+function generateProperties(properties) {
+    console.log(properties)
+    for (i = 0; i < properties.length; i++) {
+        prop = properties[i];
+        editor.DomComponents.addType(prop.id, {
+            isComponent: el => el.tagName == 'label',
+            model: {
+                defaults: {
+                    traits: prop.prop,
+                    attributes: {
+                        type: 'text',
+                        required: true
+                    },
+                },
+            },
+        });
+    }
 }
 
 editor.DomComponents.addType('tab-content', {
@@ -298,19 +385,7 @@ editor.setComponents(`
       <div id="tab6" data-tab-content="1" class="tab-content">
         <div></div>
       </div>
-
-
-      <div data-tab-content="1" id="ils6j" class="tab-content">
-        <div>New Tab Content</div>
-      </div>
     </div>
-    <div type="text" required id="imyf"></div>
-
-
-    <footer style="width: 100%;text-align: center;height: 60px;">
-    footer
-    </footer>
-   
     <script>
       var items = document.querySelectorAll('#i6g66');
       for (var i = 0, len = items.length; i < len; i++) {
@@ -474,33 +549,6 @@ for (i = 0; i < properties.length; i++) {
     });
 
 }
-for (i = 0; i < blocks.length; i++) {
-    block = blocks[i];
-    editor.BlockManager.add(block.id, {
-
-        label:`<div>
-        <img src="js/Updated Icons/`+block.image+`" style="width: 30px; height: 50px;"/ >
-        <div class="my-label-block">`+block.label+`</div>
-      </div>`,
-        category: block.category,
-        attributes: {
-            // class: block.icon,
-            // image:block.image,
-
-        },
-            //     resizable: {
-            //         tl: 0, // Top left
-            //         tc: 0, // Top center
-            //         tr: 0, // Top right
-            //         cl: 0, // Center left
-            //         bl: 0, // Bottom left
-            //   },
-        content: block.content,
-      
-    });
-}
-
-
 
 // this._builder.on('component:add', (model, argument) => {
 //     model.trigger('active')
@@ -562,8 +610,6 @@ function addfield() {
 }
 var pn = editor.Panels;
 
-
-
 // .....toolbar...
 
 const TOOLBAR_CELL = [{
@@ -595,182 +641,8 @@ const TOOLBAR_CELL = [{
 const getCellToolbar = () => TOOLBAR_CELL;
 
 
-const components = this._editor.DomComponents;
-const text = components.getType('text');
-components.addType('cell', {
-    model: text.model.extend({
-            defaults: Object.assign({}, text.model.prototype.defaults, {
-                type: 'cell',
-                tagName: 'td',
-                draggable: ['tr'],
-
-            }),
-        },
-
-        {
-            isComponent(el) {
-                let result;
-                const tag = el.tagName;
-                if (tag == 'TD' || tag == 'TH') {
-                    result = {
-                        type: 'cell',
-                        tagName: tag.toLowerCase()
-                    };
-                }
-                return result;
-            }
-        }),
-    view: text.view,
-});
-
-
-
-this._editor.on('component:selected', m => {
-    const compType = m.get('type');
-    switch (compType) {
-        case 'cell':
-            m.set('toolbar', getCellToolbar());
-    }
-});
-
-
-
-this._editor.Commands.add('table-insert-row-above', editor => {
-    const selected = editor.getSelected();
-
-    if (selected.is('cell')) {
-        const rowComponent = selected.parent();
-        const rowIndex = rowComponent.collection.indexOf(rowComponent);
-        const cells = rowComponent.components().length;
-        const rowContainer = rowComponent.parent();
-
-        rowContainer.components().add({
-            type: 'row',
-            components: [...Array(cells).keys()].map(i => ({
-                type: 'cell',
-                content: 'New Cell',
-            }))
-        }, {
-            at: rowIndex
-        });
-    }
-});
-
-
-// .....file upload ...
-
-
-function myFunction() {
-    var x = document.getElementById("myFile");
-    var txt = "";
-    if ('files' in x) {
-        if (x.files.length == 0) {
-            txt = "Select one or more files.";
-        } else {
-            for (var i = 0; i < x.files.length; i++) {
-                txt += "<br><strong>" + (i + 1) + ". file</strong><br>";
-                var file = x.files[i];
-                if ('name' in file) {
-                    txt += "name: " + file.name + "<br>";
-                }
-                if ('size' in file) {
-                    txt += "size: " + file.size + " bytes <br>";
-                }
-            }
-        }
-    } else {
-        if (x.value == "") {
-            txt += "Select one or more files.";
-        } else {
-            txt += "The files property is not supported by your browser!";
-            txt += "<br>The path of the selected file: " + x.value; 
-        }
-    }
-    document.getElementById("demo").innerHTML = txt;
-}
-
-
-
-
-// ....datetimepicker......
-$(function () {
-    $('#datetimepicker1').datetimepicker();
-});
-
-
-
-
 // Show borders by default
 pn.getButton('options', 'sw-visibility').set('active', 1);
-
-// .....cropper.....
-
-var canvas = $("#canvas"),
-    context = canvas.get(0).getContext("2d"),
-    $result = $('#result');
-
-$('#fileInput').on('change', function () {
-    if (this.files && this.files[0]) {
-        if (this.files[0].type.match(/^image\//)) {
-            var reader = new FileReader();
-            reader.onload = function (evt) {
-                var img = new Image();
-                img.onload = function () {
-                    context.canvas.height = img.height;
-                    context.canvas.width = img.width;
-                    context.drawImage(img, 0, 0);
-                    var cropper = canvas.cropper({
-                        aspectRatio: 16 / 9
-                    });
-                    $('#btnCrop').click(function () {
-                       
-                        var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png");
-                        $result.append($('<img>').attr('src', croppedImageDataURL));
-                    });
-                    $('#btnRestore').click(function () {
-                        canvas.cropper('reset');
-                        $result.empty();
-                    });
-                };
-                img.src = evt.target.result;
-            };
-            reader.readAsDataURL(this.files[0]);
-        } else {
-            alert("Invalid file type! Please select an image file.");
-        }
-    } else {
-        alert('No file(s) selected.');
-    }
-});
-// function onChange() {
-//     console.log('changed');
-//     this.model.set('value', this.getInputEl().value);
-//  }
-
-// function init() {
-//     // Also the listener changes from `change:attributes:*` to `change:*`
-//     this.on('change:display_name', this.handlePlhChange);
-//   }
-
-// editor.setStyle(JSON.parse([blocks]))
-
-// editor.setComponent([components])
-
-
-// editor.on('component:add', comp => alert(`Add ${comp.toHTML()}`));
-// editor.on('block:drag:stop', comp => alert(`Drop ${comp.toHTML()}`));
-
-// function handleClick(){
-//     alert("hello")
-// }
-// commands.run('some-command', { 
-
-//    run(editor, sender) {
-// 		alert('Hello world!');
-// 	},
-
-//  });
-
 
 function dosomething(val){
     console.log(val);
