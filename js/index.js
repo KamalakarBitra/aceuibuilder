@@ -271,31 +271,31 @@ editor.setComponents(`
   <div class="row" id="icw7">
     <nav data-tab-container="1" class="tab-container">
       <div href="#ils6j" id="i6g66" class="col-sm-3" style="padding: 0px !important;max-width:100% !important">
-        <li><a href="#tab1" data-tab="1" class="tab">Queue 1</a></li>
-        <li><a href="#tab2" data-tab="1" class="tab">Queue 2</a></li>
-        <li><a href="#tab3" data-tab="1" class="tab">Queue 3</a></li>
-        <li><a href="#tab4" data-tab="1" class="tab">Queue 4</a></li>
-        <li><a href="#tab5" data-tab="1" class="tab">Queue 5</a></li>
-        <li><a href="#tab6" data-tab="1" class="tab">Queue 6</a></li>
+        <li><a href="#queue1" data-tab="1" class="tab">Queue 1</a></li>
+        <li><a href="#queue2" data-tab="1" class="tab">Queue 2</a></li>
+        <li><a href="#queue3" data-tab="1" class="tab">Queue 3</a></li>
+        <li><a href="#queue4" data-tab="1" class="tab">Queue 4</a></li>
+        <li><a href="#queue5" data-tab="1" class="tab">Queue 5</a></li>
+        <li><a href="#queue6" data-tab="1" class="tab">Queue 6</a></li>
       </div>
     </nav>
     <div class="col-sm-9" style="padding: 0px !important;">
-      <div id="tab1" data-tab-content="1" class="tab-content">
+      <div id="queue1" data-tab-content="1" class="tab-content">
         <div></div>
       </div>
-      <div id="tab2" data-tab-content="1" class="tab-content">
+      <div id="queue2" data-tab-content="1" class="tab-content">
         <div></div>
       </div>
-      <div id="tab3" data-tab-content="1" class="tab-content">
+      <div id="queue3" data-tab-content="1" class="tab-content">
         <div></div>
       </div>
-      <div id="tab4" data-tab-content="1" class="tab-content">
+      <div id="queue4" data-tab-content="1" class="tab-content">
         <div></div>
       </div>
-      <div id="tab5" data-tab-content="1" class="tab-content">
+      <div id="queue5" data-tab-content="1" class="tab-content">
         <div></div>
       </div>
-      <div id="tab6" data-tab-content="1" class="tab-content">
+      <div id="queue6" data-tab-content="1" class="tab-content">
         <div></div>
       </div>
 
@@ -501,6 +501,45 @@ for (i = 0; i < blocks.length; i++) {
 }
 
 
+function openModal() {
+ 
+    const pfx = editor.getConfig().stylePrefix;
+    const modal = editor.Modal;
+  
+    const container = document.createElement('div');
+  
+    const inputHtml = `
+    
+    
+    `;
+  
+    const btnEdit = document.createElement('button');
+    btnEdit.innerHTML = 'Submit';
+    btnEdit.className = pfx + 'btn-prim ' + pfx + 'btn-import';
+    btnEdit.onclick = function() {
+    //   const urlInputElement = document.getElementById('urlInput');
+    //   const idInputElement = document.getElementById('idInput');
+  
+    //   const urlVal = urlInputElement.value;
+    //   const idVal = idInputElement.value;
+  
+      // here is where you put your ajax logic
+    //   myAjaxCallFunction(urlVal, idVal);
+  
+      modal.close();
+    };
+  
+    modal.setTitle('');
+    container.innerHTML = inputHtml;
+    container.appendChild(btnEdit);
+    modal.setContent(`
+   
+    <iframe src="http://localhost/aceuibuilder" style="height:500px;width:100%;"></iframe>
+    
+    `
+    );
+    modal.open();
+  };
 
 // this._builder.on('component:add', (model, argument) => {
 //     model.trigger('active')
