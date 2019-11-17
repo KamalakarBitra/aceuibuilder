@@ -2946,6 +2946,7 @@ function getUrlParameter(sParam) {
                                 if (!this._hasHashChange && this._wantsHashChange && !this._usePushState) {
                                     this.iframe = document.createElement('iframe');
                                     this.iframe.src = 'javascript:0';
+                                    this.iframe.id = 'gr-cust-id';
                                     this.iframe.style.display = 'none';
                                     this.iframe.tabIndex = -1;
                                     var body = document.body;
@@ -22670,7 +22671,8 @@ function getUrlParameter(sParam) {
                         'allowfullscreen': 'allowfullscreen',
                         'queueid': queueid,
                         'queue_unique_name': queue_unique_name,
-                        'tenant_id': tenant_id
+                        'tenant_id': tenant_id,
+                        'id': 'add-custom-id'
                     },
                     initialize: function initialize(o) {
                         Object(underscore__WEBPACK_IMPORTED_MODULE_1__["bindAll"])(this, 'updateOffset');
@@ -37859,7 +37861,7 @@ function getUrlParameter(sParam) {
                             label: 'Save',
                             context: 'show-json',
                             command(editor) {
-                                sampleClick(JSON.stringify(editor.getComponents('tabs')))
+                                sampleClick(JSON.stringify(editor.getWrapper()))
                             //   editor.Modal.setTitle('Components JSON')
                             //     .setContent(`<textarea style="width:100%; height: 250px;">
                             //       ${JSON.stringify(editor.getComponents())}
