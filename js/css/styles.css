@@ -117,21 +117,22 @@
     margin: 0;
   }
   .tab{
-    text-decoration:none;
-    color:inherit;
-    padding:7px 14px;
-    transition:opacity 0.3s;
-    display:inline-block;
-    border-radius:3px;
-    margin-right:10px;
+    width: 120px;
+    text-decoration: none;
+    color: inherit;
+    padding: 7px 24px;
+    transition: opacity 0.3s;
+    display: inline-block;
+    border-radius: 3px;
+    text-align: center;
   }
   .tab.tab-active{
-    background-color:#0d94e6;
+    background-color:#673AB7;
     color:white;
   }
   .tab-content{
-    padding:6px 12px;
-    min-height:100px;
+    /* padding:6px 12px; */
+    min-height: 570px;
     animation:fadeEffect 1s;
   }
   @keyframes fadeEffect{
@@ -151,3 +152,17 @@
     margin-right: 15px;
     margin-bottom: 15px;
   }
+
+  div#wrapper {
+    /* margin-top: 20px; */
+}
+
+
+li {
+  list-style-type: none;
+}
+
+
+
+  /* .......tabs....................... */
+  

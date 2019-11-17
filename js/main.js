@@ -19,6 +19,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 
+
+
 function sampleClick(comps) {
     a = JSON.parse(comps)
 
