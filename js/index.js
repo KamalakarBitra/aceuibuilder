@@ -1,3 +1,24 @@
+dynamicUrl = 'http://54.224.111.149:5002'
+
+var queueid = getUrlParameter("queueid");
+var queue_unique_name = getUrlParameter('queue_unique_name');
+var tenant_id = getUrlParameter('tenant_id');
+
+function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+var all_options;
 var editor = grapesjs.init({
     showOffsets: 1,
     showDevices: 0,
@@ -8,77 +29,123 @@ var editor = grapesjs.init({
     storageManager: {
         autoload: 0
     },
-
     plugins: ['grapesjs-tabs'],
     pluginsOpts: {
 
     }
-
-
 });
-// storageManager: { type: null },
 
+function sampleClick(comps) {
+    console.log(comps);
+    a = JSON.parse(comps)
+    allTabs = {};
+    final_tab = []
+    tab_fields = []
 
+    sendObj = {
+        flag: 'save_layout',
+    }
+    sendObj.classification = 'Layout'
+    sendObj.queueid = sessionStorage.getItem('id')
+    sendObj.template = JSON.stringify(editor.getComponents())
+    sendObj.tenant_id = tenant_id
 
-// editor.Modal
-// .setTitle("Edit Link")
-// .setContent('<div id="gjs" style="height:300px; overflow:hidden;"></div>')
-// .open();
+    console.log(sendObj);
 
-
-
-
-function openModal() {
- 
-    const pfx = editor.getConfig().stylePrefix;
-    const modal = editor.Modal;
-  
-    const container = document.createElement('div');
-  
-    const inputHtml = `
-    
-    
-    `;
-  
-    const btnEdit = document.createElement('button');
-    btnEdit.innerHTML = 'Submit';
-    btnEdit.className = pfx + 'btn-prim ' + pfx + 'btn-import';
-    btnEdit.onclick = function() {
-    //   const urlInputElement = document.getElementById('urlInput');
-    //   const idInputElement = document.getElementById('idInput');
-  
-    //   const urlVal = urlInputElement.value;
-    //   const idVal = idInputElement.value;
-  
-      // here is where you put your ajax logic
-    //   myAjaxCallFunction(urlVal, idVal);
-  
-      modal.close();
+    var settings11 = {
+        "async": true,
+        "crossDomain": true,
+        "url": dynamicUrl + "/builder_components",
+        "method": "POST",
+        "processData": false,
+        "contentType": "application/json",
+        "data": JSON.stringify(sendObj)
     };
-  
-    modal.setTitle('');
-    container.innerHTML = inputHtml;
-    container.appendChild(btnEdit);
-    modal.setContent(`
-   
-    <iframe src="http://localhost/aceuibuilder_old" style="height:500px;width:100%;"></iframe>
+
+    $.ajax(settings11).done(function (resp) {
+        console.log(resp);
+
+    })
+
+}
+
+function getCall(res) {
+    // console.log(val.template);
     
-    `
-    );
-    modal.open();
-  };
+    data = res.data.components;
+    all_options = res.data.dropdown;
+    arr = []
+    properties = []
+    for (i = 0; i < data.length; i++) {
+        for (category in data[i]) {
+            for (component in data[i][category]) {
+                if (component != 'tabs') {
+                    obj = {
+                        id: (i + 1),
+                        label: component,
+                        category: category,
+                        content: {
+                            tagName: 'input',
+                            components: '<input type="text">',
+                            type: component,
+                            attributes: {
+                                placeholder: 'Field'
+                            }
+                        },
+                        icon: 'fa fa-window-minimize'
+                    }
+                    arr.push(obj);
+                    propObj = {}
+                    propObj.id = component
+                    propObj.prop = []
+                    for (j = 0; j < data[i][category][component].length; j++) {
+                        pobj = {}
+                        pobj.type = getType(data[i][category][component][j].attribute_master_type);
+                        pobj.options = getOptions(data[i][category][component][j])
+                        pobj.name = data[i][category][component][j].attribute_master_name
+                        pobj.label = data[i][category][component][j].attribute_master_name
+                        propObj.prop.push(pobj)
+                    }
+                    properties.push(propObj)
+                }
+            }
+        }
+        
+    }
+    console.log(arr, properties);
 
+    generateBlocks(arr, properties, res.template);
+}
 
+function getType(ty) {
+    type = ''
+    switch (ty) {
+        case "input_text":
+            type = "text";
+            break;
+        case "dynamic_select":
+        case "static_select":
+            type = "select";
+            break;
+    }
+    return type
+}
 
-
-
+function getOptions(dt) {
+    options = [];
+    if (all_options[dt.attribute_master_id]) {
+        for (let i = 0; i < all_options[dt.attribute_master_id].length; i++) {
+            const element = all_options[dt.attribute_master_id][i];
+            options.push({ name: element.attribute_name, value: element.attribute_value})
+        }
+    }
+    return options;
+}
 
 editor.DomComponents.addType('tab-content', {
-
     model: {
         defaults: {
             traits: [
-
                 'name',
                 'placeholder',
                 {
