@@ -4518,8 +4518,8 @@ span.CodeMirror-selectedtext {
 }
 
 .gjs-label-wrp {
-    width: 50%;
-    min-width: 50%
+    width: 30%;
+    min-width: 30%
 }
 
 .gjs-field-wrp {
@@ -4983,7 +4983,7 @@ div.gjs-com-hover-move {
 .gjs-com-badge-red,
 .gjs-badge {
     pointer-events: none;
-    background-color: #ff7c10;
+    background-color: #3b97e3;
     color: #fff;
     padding: 2px 5px;
     position: absolute;
@@ -5031,14 +5031,14 @@ div.gjs-com-hover-move {
     outline: none
 }
 
-/* .gjs-pn-panel {
+.gjs-pn-panel {
     display: inline-block;
     position: absolute;
     box-sizing: border-box;
     text-align: center;
     padding: 5px;
     z-index: 3
-} */
+}
 
 .gjs-pn-panel .icon-undo,
 .gjs-pn-panel .icon-redo {
@@ -5055,29 +5055,25 @@ div.gjs-com-hover-move {
 }
 
 .gjs-pn-options {
-    position: absolute;
-    top: 9px;
-    right: 10px;
+    right: 22%;
+    top: 0
 }
 
 .gjs-pn-views {
     border-bottom: 2px solid rgba(0, 0, 0, 0.2);
     right: 0;
-    /* width: 22%; */
-    z-index: 4;
-    right: 15%;
-    position: absolute;
-    top: 5px;
+    width: 22%;
+    z-index: 4
 }
 
-/* .gjs-pn-views-container {
+.gjs-pn-views-container {
     height: 100%;
     padding: 42px 0 0;
     right: 0;
     width: 22%;
     overflow: auto;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2)
-} */
+}
 
 .gjs-pn-buttons {
     text-align: right;

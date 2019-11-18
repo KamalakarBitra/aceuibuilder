@@ -1,7 +1,5 @@
-blocks = [
-	
-	{
-		id: 'lblText',
+blocks = [{
+		id: 1,
 		label: 'input',
 		category: 'fields',
 	

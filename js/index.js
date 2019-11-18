@@ -1,24 +1,4 @@
-dynamicUrl = 'http://54.224.111.149:5002'
 
-var queueid = getUrlParameter("queueid");
-var queue_unique_name = getUrlParameter('queue_unique_name');
-var tenant_id = getUrlParameter('tenant_id');
-
-function getUrlParameter(sParam) {
-    var sPageURL = window.location.search.substring(1),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-        }
-    }
-};
-var all_options;
 var editor = grapesjs.init({
     showOffsets: 1,
     showDevices: 0,
@@ -29,6 +9,7 @@ var editor = grapesjs.init({
     storageManager: {
         autoload: 0
     },
+
     plugins: ['grapesjs-tabs'],
     pluginsOpts: {
 
@@ -192,7 +173,6 @@ function getOptions(dt) {
             options.push({ name: element.attribute_name, value: element.attribute_value})
         }
     }
-    return options;
 }
 
 function generateBlocks(blocks, properties, template) {
@@ -230,6 +210,7 @@ function generateProperties(properties) {
 }
 
 editor.DomComponents.addType('tab-content', {
+
     model: {
         defaults: {
             traits: [
@@ -659,6 +640,7 @@ function hello() {
     alert("hello");
 }
 
+}
 
 function addfield() {
     // alert('hello')

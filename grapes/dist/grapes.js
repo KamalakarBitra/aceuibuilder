@@ -1633,9 +1633,7 @@ function getUrlParameter(sParam) {
                         // is automatically generated and assigned for you.
                         var Model = Backbone.Model = function (attributes, options) {
                             var attrs = attributes || {};
-                            
                             options || (options = {});
-
                             this.cid = _.uniqueId(this.cidPrefix);
                             this.attributes = {};
                             if (options.collection) this.collection = options.collection;
@@ -25630,7 +25628,6 @@ function getUrlParameter(sParam) {
                             bm.render();
                             var id = 'views-container';
                             var blocks = document.createElement('div');
-                            blocks.className = 'container-box-view'
                             var panels = pn.getPanel(id) || pn.addPanel({
                                 id: id
                             });
@@ -25639,11 +25636,11 @@ function getUrlParameter(sParam) {
                             this.blocks = blocks;
                         }
 
-                        // this.blocks.style.display = 'block';
+                        this.blocks.style.display = 'block';
                     },
                     stop: function stop() {
                         var blocks = this.blocks;
-                        // blocks && (blocks.style.display = 'none');
+                        blocks && (blocks.style.display = 'none');
                     }
                 });
 
@@ -25803,7 +25800,7 @@ function getUrlParameter(sParam) {
                         if (!this.$cn) {
                             var tmView = tm.getTraitsViewer();
                             var confTm = tm.getConfig();
-                            this.$cn = $('<div class="class-trait-view"></div>');
+                            this.$cn = $('<div></div>');
                             this.$cn2 = $('<div></div>');
                             this.$cn.append(this.$cn2);
                             this.$header = $('<div>').append("<div class=\"".concat(confTm.stylePrefix, "header\">").concat(confTm.textNoElement, "</div>"));
@@ -37880,40 +37877,38 @@ function getUrlParameter(sParam) {
 
                     ]
                     },
+
+                    
+                    
+                 
+    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     {
                         id: 'views',
-                        buttons: [
-                            {
-                                id: otm,
-                                className: 'fa fa-cog',
-                                // active: true,
-                                command: otm,
-                                togglable: 0,
-                                attributes: {
-                                    title: 'Settings'
-                                }
-                            },
-                            // {
-                            // id: osm,
-                            // className: 'fa fa-paint-brush',
-                            // command: osm,
-                            // active: true,
-                            // togglable: 0,
-                            // attributes: {
-                            //     title: 'Open Style Manager'
-                            // }
-                            // },
-                            {
-                                id: obl,
-                                active: true,
-                                className: 'fa fa-th-large',
-                                command: obl,
-                                togglable: 0,
-                                attributes: {
-                                    title: 'Open Blocks'
-                                }
+                        buttons: [{
+                            id: otm,
+                            className: 'fa fa-cog',
+                            command: otm,
+                            togglable: 0,
+                            attributes: {
+                                title: 'Settings'
                             }
-                        ]
+                        }, {
+                            id: obl,
+                            active: true,
+                            className: 'fa fa-th-large',
+                            command: obl,
+                            togglable: 0,
+                            attributes: {
+                                title: 'Open Blocks'
+                            }
+                        }]
                     }],
                     // Editor model
                     em: null,
@@ -38672,7 +38667,7 @@ function getUrlParameter(sParam) {
                         this.id = this.pfx + model.get('id');
                         this.listenTo(model, 'change:appendContent', this.appendContent);
                         this.listenTo(model, 'change:content', this.updateContent);
-                        // this.listenTo(model, 'change:visible', this.toggleVisible);
+                        this.listenTo(model, 'change:visible', this.toggleVisible);
                         model.view = this;
                     },
 
@@ -38690,12 +38685,12 @@ function getUrlParameter(sParam) {
                         this.$el.html(this.model.get('content'));
                     },
                     toggleVisible: function toggleVisible() {
-                        // if (!this.model.get('visible')) {
-                        //     this.$el.addClass("".concat(this.ppfx, "hidden"));
-                        //     return;
-                        // }
-                        return;
-                        // this.$el.removeClass("".concat(this.ppfx, "hidden"));
+                        if (!this.model.get('visible')) {
+                            this.$el.addClass("".concat(this.ppfx, "hidden"));
+                            return;
+                        }
+
+                        this.$el.removeClass("".concat(this.ppfx, "hidden"));
                     },
                     attributes: function attributes() {
                         return this.model.get('attributes');
@@ -38763,7 +38758,7 @@ function getUrlParameter(sParam) {
                             }, resizable));
 
                             resizer.blur = function () { };
-                            
+
                             resizer.focus(this.el);
                         }
                     },
@@ -38867,6 +38862,7 @@ function getUrlParameter(sParam) {
                     },
                     render: function render() {
                         var _this = this;
+
                         var $el = this.$el;
                         var frag = document.createDocumentFragment();
                         $el.empty();
