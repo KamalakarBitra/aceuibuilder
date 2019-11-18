@@ -418,7 +418,6 @@ properties = [
 				type: 'checkbox',
 				name: 'Consider field for export',
 				label: 'Consider field for export',
-
 			},
 
 
