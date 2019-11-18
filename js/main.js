@@ -1,4 +1,3 @@
-debugger
 originUrl = window.location.origin.split(':');
 dynamicUrl = originUrl[0] + ":" + originUrl[1] + ":5002";
 dynamicUrl = 'http://54.224.111.149:5002'

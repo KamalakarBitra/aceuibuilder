@@ -640,8 +640,6 @@ function hello() {
     alert("hello");
 }
 
-}
-
 function addfield() {
     // alert('hello')
     // model.get('traits').add([{name: 'product', label: 'Title'},])
