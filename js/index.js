@@ -40,7 +40,9 @@ function sampleClick(comps) {
     output = [];
     convertor(JSON.parse(comps), output)
     
-    
+    // editor.on('block:drag:stop', function (droppedComponent) {
+    //     console.log('hello')
+    // })   
     
     
     
@@ -345,7 +347,7 @@ editor.DomComponents.addType('text', {
 // <img src="js/Updated Icons/Image.svg" style="">
 // <img src="js/Updated Icons/mesh.svg">
 // <img src="js/Updated Icons/User Management.svg">
-{/* <li><a href=""><img src="js/Updated Icons/logo.svg" style="height:20px"></a></li> */}
+/* <li><a href=""><img src="js/Updated Icons/logo.svg" style="height:20px"></a></li> */
 
 editor.setComponents(`
 <div type="text" required id="inac" style="height:60px;background:#9c27b0bf;color:white;text-align:right">
@@ -353,7 +355,11 @@ editor.setComponents(`
 <img src="js/Updated Icons/User Management.svg" style="margin-top:10px;margin-top: 10px;width: 39px;float: right;margin-right: 29px;">
 <input type="search" placeholder="search...." style="margin-top:10px;float:center" >
 </div>
-<div>
+
+
+`)
+
+{/* <div>
 <div data-tabs="1" id="i6gi">
   <div class="row" id="icw7">
     <nav data-tab-container="1" class="tab-container">
@@ -416,11 +422,7 @@ editor.setComponents(`
           }))
         }.bind(items[i]))();
       }
-    </script>
-
-`)
-
-
+    </script> */}
 
 let stylePrefix = 'gjs-';
 const basicStyle = true;
@@ -576,6 +578,23 @@ for (i = 0; i < blocks.length; i++) {
 }
 
 
+editor.TraitManager.addType('display_name', {
+    eventCapture: ['input'], // you can use multiple events in the array
+    onEvent({ elInput, component, event }) {
+        component.content = elInput.value
+        console.log(elInput, component.content, event, elInput.value)
+  
+        console.log(component.content)
+
+        // component.addAttributes( 'value',component.content);
+  
+    const value = component.value || component.content;
+   
+    component.addAttributes({ value });
+    }
+
+  });
+
 function openModal() {
  
     const pfx = editor.getConfig().stylePrefix;
@@ -620,22 +639,7 @@ function openModal() {
 //     model.trigger('active')
 // })
 
-editor.TraitManager.addType('display_name', {
-    eventCapture: ['input'], // you can use multiple events in the array
-    onEvent({ elInput, component, event }) {
-        component.content = elInput.value
-        console.log(elInput, component.content, event, elInput.value)
-  
-        console.log(component.content)
 
-        // component.addAttributes( 'value',component.content);
-  
-    const value = component.value || component.content;
-   
-    component.addAttributes({ value });
-    }
-
-  });
 
 //   editor.on("component:selected", function(args) { args[1].add("resizable", true); });
 
