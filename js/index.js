@@ -39,7 +39,9 @@ function sampleClick(comps) {
     output = [];
     convertor(JSON.parse(comps), output)
     
-    
+    // editor.on('block:drag:stop', function (droppedComponent) {
+    //     console.log('hello')
+    // })   
     
     
     
@@ -358,7 +360,7 @@ editor.DomComponents.addType('text', {
 // <img src="js/Updated Icons/Image.svg" style="">
 // <img src="js/Updated Icons/mesh.svg">
 // <img src="js/Updated Icons/User Management.svg">
-{/* <li><a href=""><img src="js/Updated Icons/logo.svg" style="height:20px"></a></li> */}
+/* <li><a href=""><img src="js/Updated Icons/logo.svg" style="height:20px"></a></li> */
 
 // editor.setComponents(`
 //     <div ty="header" id="inac" style="height:60px;background:#9c27b0bf;color:white;text-align:right">
@@ -526,6 +528,23 @@ for (i = 0; i < blocks.length; i++) {
     });
 }
 
+
+editor.TraitManager.addType('display_name', {
+    eventCapture: ['input'], // you can use multiple events in the array
+    onEvent({ elInput, component, event }) {
+        component.content = elInput.value
+        console.log(elInput, component.content, event, elInput.value)
+  
+        console.log(component.content)
+
+        // component.addAttributes( 'value',component.content);
+  
+    const value = component.value || component.content;
+   
+    component.addAttributes({ value });
+    }
+
+  });
 
 function openModal() {
  
