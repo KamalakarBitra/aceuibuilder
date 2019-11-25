@@ -25,7 +25,11 @@ blocks = [
 		category: 'fields',
 		content: {
 			tagName: 'select',
-			components: '<input type="text" readonly/>',
+			components: '',
+			attributes: {
+				readonly: 'readonly',
+				ty: 'select'
+			},
 			type: 'prop1',
 			style: {
 				width: '100px'
@@ -40,12 +44,12 @@ blocks = [
 		category: 'fields',
 		content: {
 			tagName: 'textarea',
-			components: '<textarea rows="4" cols="50"></textarea>',
-			type: "fields",
-			
+			components: '',
 			attributes: {
-				placeholder: 'insert your text here',
+				readonly: 'readonly',
+				ty: 'textarea'
 			},
+			type: "fields",
 			style: {
 				width: '100%'
 			}
@@ -59,7 +63,10 @@ blocks = [
 		category: 'fields',
 		content: {
 			tagName: 'checkbox',
-			components: '<input type="checkbox">',
+			components: '',
+			attributes: {
+				ty: 'checkbox'
+			},
 			type: 'prop1',
 		},
 		image: "check-box.svg",
@@ -69,8 +76,12 @@ blocks = [
 		label: 'upload',
 		category: 'fields',
 		content: {
-			tagName: 'upload',
-			components: '<input type="file">',
+			tagName: 'input',
+			components: '',
+			attributes: {
+				ty: 'upload',
+				type: 'file'
+			},
 			type: 'prop1',
 		},
 		image: "Upload File.svg",
@@ -81,7 +92,10 @@ blocks = [
 		category: 'fields',
 		content: {
 			tagName: 'div',
-			components: '<div style="width: 100%; height: 100%">Table</div>',
+			components: '',
+			attributes: {
+				ty: 'table'
+			},
 			type: 'prop1',
 		},
 		image: "Table.svg",
@@ -93,6 +107,9 @@ blocks = [
 		content: {
 			tagName: "div",
 			components: "",
+			attributes: {
+				ty: '1 column'
+			},
 			type: "fields",
 			style: {
 				width: '100%',
@@ -110,7 +127,11 @@ blocks = [
 		category: 'basic',
 		content: {
 			tagName: "div",
-			components: '<div class="row twocols" ty="2 column" style="width:100%;height:100px;margin:0px !important"><div class="col-sm-6"></div><div class="col-sm-6"></div></div>',
+			components: '<div class="col-sm-6"></div><div class="col-sm-6"></div>',
+			attributes: {
+				ty: '2 column',
+				class: 'row',
+			},
 			type: "fields",
 			style: {
 				width: '100%',
@@ -127,7 +148,11 @@ blocks = [
 		label: '3 column',
 		category: 'basic',
 		content: {
-			components: '<div class="row" ty="3 column" style="width:100%;height:100px;margin:0px !important"><div class="col-sm-4"></div><div class="col-sm-4"></div><div class="col-sm-4"></div></div>',
+			components: '<div class="col-sm-4"></div><div class="col-sm-4"></div><div class="col-sm-4"></div>',
+			attributes: {
+				ty: '3 column',
+				class: 'row',
+			},
 			type: "fields",
 			style: {
 				
@@ -143,7 +168,11 @@ blocks = [
 		label: '4 column',
 		category: 'basic',
 		content: {
-			components: '<div class="row" ty="4 column" style="width:100%;height:100px;margin:0px !important"><div class="col-sm-3"></div><div class="col-sm-3"></div><div class="col-sm-3"></div><div class="col-sm-3"></div></div>',
+			components: '<div class="col-sm-3"></div><div class="col-sm-3"></div><div class="col-sm-3"></div><div class="col-sm-3"></div>',
+			attributes: {
+				ty: '4 column',
+				class: 'row',
+			},
 			type: "fields",
 			style: {
 				
@@ -158,7 +187,11 @@ blocks = [
 		label: 'button',
 		category: 'fields',
 		content: {
-			components: '<button ty="button" type="submit" class="btn btn-primary" style="width:100px">Button</button>',
+			tagName: "button",
+			components: "button",
+			attributes: {
+				ty: 'button'
+			},
 			type: "fields",
 		},
 		// icon: 'fa fa-minus-square-o',
@@ -169,9 +202,14 @@ blocks = [
 		label: 'image',
 		category: 'components',
 		content: {
-			components: '<img ty="image" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&w=500&q=80">',
-			type: "fields",
+			tagName: "image",
+			components: "",
+			attributes: {
+				ty: 'image',
+				src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&w=500&q=80'
+			},
 		},
+		type: "fields",
 		image: "Image.svg",
 	},
 	{
@@ -194,7 +232,11 @@ blocks = [
 		label: 'form',
 		category: 'fields',
 		content: {
-			components: '<form></form>',
+			attributes:{
+				ty:'form'
+			},
+			tagName: "form",
+			components: '',
 			type: "fields",
 		},
 		image: "form.svg",
@@ -204,7 +246,12 @@ blocks = [
 		label: 'User management',
 		category: 'components',
 		content: {
-			components: '<img src="js/Updated Icons/User Management.svg">',
+			tagName:'Image',
+			attributes:{
+				src:'js/Updated Icons/User Management.svg',
+				ty:'profile'
+			},
+			components: '',
 			type: "fields",
 		},
 		image: "Image.svg",
