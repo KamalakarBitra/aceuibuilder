@@ -12,7 +12,6 @@ function getUrlParameter(sParam) {
 
     for (i = 0; i < sURLVariables.length; i++) {
         sParameterName = sURLVariables[i].split('=');
-
         if (sParameterName[0] === sParam) {
             return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
         }
@@ -78,35 +77,44 @@ function sampleClick(comps) {
 
 }
 
+allProperties = properties
+
 function convertor(_input, output) {
-    
-    
     if ($.type(_input) == "object") {
-        keys_ = Object.keys(_input)
-        if (keys_.length == 1 || keys_[0] == 'content') {
+        temp_obj = Object.assign({}, _input)
+        // delete temp_obj['components'];
+        if (!temp_obj.attributes) {
+            temp_obj.attributes = {};
+        }
+        
+        var get_id = temp_obj.attributes['id'];
+        var ele = document.getElementById("add-custom-id").contentWindow.document.getElementById(get_id);
+        if (ele) {
+            parent_id = ele.parentElement.id
+            temp_obj.width = ele.offsetWidth;
+            temp_obj.height = ele.offsetHeight;
         }
         else {
-            try {
-                if (!_input.attributes && _input.components.length == 1) {
-                    _input = _input.components[0];
-                }            
-                var get_id = _input.attributes.id;
-                ele = document.getElementById("add-custom-id").contentWindow.document.getElementById(get_id)
-                parent_id = ele.parentNode.id
-            } catch (error) {
-                parent_id = null
-            }
-            if (!_input.attributes) {
-                _input.attributes = {}
-            }
-            _input.attributes.parent_id = parent_id
-            temp_push = Object.assign({}, _input);
-            delete temp_push['components'];
-            if (_input.components) {
-             output.push(temp_push)
-            }
-            
+            parent_id = null
+            temp_obj.width = 0;
+            temp_obj.height = 0;
         }
+        temp_obj.attributes.parent_id = parent_id
+        
+        temp_obj.props = []
+        if (temp_obj.type) {
+            prop_idx = allProperties.findIndex(x => x.id = temp_obj.type);
+            if (prop_idx > -1) {
+                prop_ele = allProperties[prop_idx].prop
+                for (let i = 0; i < prop_ele.length; i++) {
+                    vl = temp_obj.attributes[prop_ele[i].name] ? temp_obj.attributes[prop_ele[i].name] : ""
+                    prop_ele[i].back.attribute_value = vl;
+                    temp_obj.props.push(prop_ele[i].back);
+                }
+            }
+        }
+        // _input = temp_obj;
+        output.push(temp_obj)
     }
     if ($.type(_input) == "array") {
         for (var i = 0; i < _input.length; i++) {
@@ -116,7 +124,7 @@ function convertor(_input, output) {
     else if ($.type(_input) == "object" && "components" in _input) {
         output = convertor(_input["components"], output)
     }
-    console.log(JSON.stringify(output));
+    console.log(JSON.stringify(output), _input);
     return output
 }
 
@@ -153,10 +161,15 @@ function getCall(res) {
                     propObj.prop = []
                     for (j = 0; j < data[i][category][component].length; j++) {
                         pobj = {}
-                        pobj.type = getType(data[i][category][component][j].attribute_master_type);
+                        ty = getType(data[i][category][component][j].attribute_master_type)
+                        if (data[i][category][component][j].attribute_master_name == "display_name") {
+                            ty = 'display_name';
+                        }
+                        pobj.type = ty;
                         pobj.options = getOptions(data[i][category][component][j])
                         pobj.name = data[i][category][component][j].attribute_master_name
-                        pobj.label = data[i][category][component][j].attribute_master_name
+                        pobj.label = data[i][category][component][j].attribute_master_display_name
+                        pobj.back = data[i][category][component][j]
                         propObj.prop.push(pobj)
                     }
                     properties.push(propObj)
@@ -166,7 +179,7 @@ function getCall(res) {
         
     }
     console.log(arr, properties);
-
+    allProperties = properties;
     generateBlocks(arr, properties, res.template);
 }
 
@@ -347,78 +360,16 @@ editor.DomComponents.addType('text', {
 // <img src="js/Updated Icons/User Management.svg">
 {/* <li><a href=""><img src="js/Updated Icons/logo.svg" style="height:20px"></a></li> */}
 
-editor.setComponents(`
-<div type="text" required id="inac" style="height:60px;background:#9c27b0bf;color:white;text-align:right">
-<img src="js/Updated Icons/ace_logo.png" style="height: 60px;float: left;margin-left: 20px;">
-<img src="js/Updated Icons/User Management.svg" style="margin-top:10px;margin-top: 10px;width: 39px;float: right;margin-right: 29px;">
-<input type="search" placeholder="search...." style="margin-top:10px;float:center" >
-</div>
-<div>
-<div data-tabs="1" id="i6gi">
-  <div class="row" id="icw7">
-    <nav data-tab-container="1" class="tab-container">
-      <div href="#ils6j" id="i6g66" class="col-sm-3" style="padding: 0px !important;max-width:100% !important">
-        <li><a href="#queue1" data-tab="1" class="tab">Queue 1</a></li>
-        <li><a href="#queue2" data-tab="1" class="tab">Queue 2</a></li>
-        <li><a href="#queue3" data-tab="1" class="tab">Queue 3</a></li>
-        <li><a href="#queue4" data-tab="1" class="tab">Queue 4</a></li>
-        <li><a href="#queue5" data-tab="1" class="tab">Queue 5</a></li>
-        <li><a href="#queue6" data-tab="1" class="tab">Queue 6</a></li>
-      </div>
-    </nav>
-    <div class="col-sm-9" style="padding: 0px !important;">
-      <div id="queue1" data-tab-content="1" class="tab-content">
-        <div></div>
-      </div>
-      <div id="queue2" data-tab-content="1" class="tab-content">
-        <div></div>
-      </div>
-      <div id="queue3" data-tab-content="1" class="tab-content">
-        <div></div>
-      </div>
-      <div id="queue4" data-tab-content="1" class="tab-content">
-        <div></div>
-      </div>
-      <div id="queue5" data-tab-content="1" class="tab-content">
-        <div></div>
-      </div>
-      <div id="queue6" data-tab-content="1" class="tab-content">
-        <div></div>
-      </div>
-    </div>
-    <script>
-      var items = document.querySelectorAll('#i6g66');
-      for (var i = 0, len = items.length; i < len; i++) {
-
-        (function () {
-          var t, e = this,
-            n = "[data-tab]",
-            r = document.body,
-            o = r.matchesSelector || r.webkitMatchesSelector || r.mozMatchesSelector || r.msMatchesSelector,
-            a = function (r) {
-              var o = e.querySelectorAll(n) || [];
-              for (t = 0; t < o.length; t++) {
-                var a = o[t],
-                  i = a.className.replace("tab-active", "").trim();
-                a.className = i
-              }! function () {
-                var n = e.querySelectorAll("[data-tab-content]") || [];
-                for (t = 0; t < n.length; t++) n[t].style.display = "none"
-              }(), r.className += " tab-active";
-              var c = r.getAttribute("href"),
-                s = e.querySelector(c);
-              s && (s.style.display = "")
-            },
-            i = e.querySelector(".tab-active" + n);
-          (i = i || e.querySelector(n)) && a(i), e.addEventListener("click", (function (t) {
-            var e = t.target;
-            o.call(e, n) && a(e)
-          }))
-        }.bind(items[i]))();
-      }
-    </script>
-
-`)
+// editor.setComponents(`
+//     <div ty="header" id="inac" style="height:60px;background:#9c27b0bf;color:white;text-align:right">
+//         <img src="js/Updated Icons/ace_logo.png" style="height: 60px;float: left;margin-left: 20px;">
+//         <img src="js/Updated Icons/man-user.svg" style="margin-top:15px;width: 20px;float: right;margin-right: 29px;">
+//         <input type="search" placeholder="search...." style="margin-top:10px;float:center" >
+//     </div>
+//     <div data-gjs-type="default" ty="mainBody" id="inacaes" style="height:100%;">
+    
+//     </div>
+// `)
 
 
 
@@ -542,7 +493,7 @@ for (i = 0; i < properties.length; i++) {
                     tr: 0, // Top right
                     cl: 0, // Center left
                     bl: 0, // Bottom left
-              }
+                }
             },
         },
 
@@ -554,22 +505,22 @@ for (i = 0; i < blocks.length; i++) {
     editor.BlockManager.add(block.id, {
 
         label:`<div>
-        <img src="js/Updated Icons/`+block.image+`" style="width: 30px; height: 50px;"/ >
-        <div class="my-label-block">`+block.label+`</div>
-      </div>`,
+            <img src="js/Updated Icons/`+block.image+`" style="width: 30px; height: 50px;"/ >
+            <div class="my-label-block">`+block.label+`</div>
+        </div>`,
         category: block.category,
         attributes: {
             // class: block.icon,
             // image:block.image,
 
         },
-            //     resizable: {
-            //         tl: 0, // Top left
-            //         tc: 0, // Top center
-            //         tr: 0, // Top right
-            //         cl: 0, // Center left
-            //         bl: 0, // Bottom left
-            //   },
+        resizable: {
+            tl: 0, // Top left
+            tc: 0, // Top center
+            tr: 0, // Top right
+            cl: 0, // Center left
+            bl: 0, // Bottom left
+        },
         content: block.content,
       
     });
@@ -614,60 +565,21 @@ function openModal() {
     `
     );
     modal.open();
-  };
-
-// this._builder.on('component:add', (model, argument) => {
-//     model.trigger('active')
-// })
+};
 
 editor.TraitManager.addType('display_name', {
     eventCapture: ['input'], // you can use multiple events in the array
     onEvent({ elInput, component, event }) {
         component.content = elInput.value
-        console.log(elInput, component.content, event, elInput.value)
-  
-        console.log(component.content)
-
-        // component.addAttributes( 'value',component.content);
-  
-    const value = component.value || component.content;
-   
-    component.addAttributes({ value });
+        const value = component.value || component.content;
+        component.addAttributes({ value });
     }
-
-  });
-
-//   editor.on("component:selected", function(args) { args[1].add("resizable", true); });
-
-// .....code for adding trait...editor.....
-
-// var defaultType = editor.DomComponents.getType("default");
-// var _initialize = defaultType.model.prototype.initialize;
-// defaultType.model.prototype.initialize = function() {
-//     _initialize.apply(this, arguments);
-
-//     this.get("traits").add({
-//         type: "input",
-//         label: "Crazy Attribute",
-//         name: "data-crazy"
-//     });
-// };
-
-
-
-function hello() {
-    alert("hello");
-}
-
+});
 
 function addfield() {
-    // alert('hello')
-    // model.get('traits').add([{name: 'product', label: 'Title'},])
-    // Component selected in canvas
     const component = editor.getSelected();
     const traits = component.get('traits');
     traits.forEach(trait => console.log(trait.props()))
-    // const component = editor.getSelected();
     component.addTrait({
         name: 'type',
     }, {

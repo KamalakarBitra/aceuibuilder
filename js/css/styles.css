@@ -92,9 +92,7 @@
 
   /* ...cropper.js */
 
-  img {
-    max-width: 100%; /* This rule is very important, please do not ignore this! */
-  }
+  
   
   #canvas {
     height: 600px;
