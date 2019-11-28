@@ -33,6 +33,13 @@ var editor = grapesjs.init({
     }
 });
 
+
+
+
+
+
+
+
 function sampleClick(comps) {
     output = [];
     convertor(JSON.parse(comps), output)
@@ -336,6 +343,17 @@ editor.DomComponents.addType('text', {
         },
     },
 });
+
+
+
+editor.setComponents(`
+
+
+
+
+
+
+`)
 // editor.setComponents({
 //     type: 'tabs',
 //     classes: ['cls'],
@@ -350,17 +368,7 @@ editor.DomComponents.addType('text', {
 // <img src="js/Updated Icons/User Management.svg">
 /* <li><a href=""><img src="js/Updated Icons/logo.svg" style="height:20px"></a></li> */
 
-// editor.setComponents(`
-//     <div ty="header" id="inac" style="height:60px;background:#9c27b0bf;color:white;text-align:right">
-//         <img src="js/Updated Icons/ace_logo.png" style="height: 60px;float: left;margin-left: 20px;">
-//         <img src="js/Updated Icons/man-user.svg" style="margin-top:15px;width: 20px;float: right;margin-right: 29px;">
-//         <input type="search" placeholder="search...." style="margin-top:10px;float:center" >
-//     </div>
-//     <div data-gjs-type="default" ty="mainBody" id="inacaes" style="height:100%;">
-    
-//     </div>
-// `)
-
+editor.setComponents('<div type="text" required id="inac" style="height:60px;background:#9c27b0bf;color:white;text-align:right"> <img src="js/Updated Icons/ace_logo.png" style="height: 60px;float: left;margin-left: 20px;"> <img src="js/Updated Icons/User Management.svg" style="margin-top:10px;margin-top: 10px;width: 39px;float: right;margin-right: 29px;"> <input type="search" placeholder="search...." style="margin-top:10px;float:center" ></div><div class="row"><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div></div>')
 
 
 let stylePrefix = 'gjs-';
@@ -515,6 +523,20 @@ for (i = 0; i < blocks.length; i++) {
       
     });
 }
+
+
+
+
+
+
+
+editor.Commands.add('cmdClear', () => editor.DomComponents.clear() );
+
+
+
+
+
+
 
 
 editor.TraitManager.addType('display_name', {

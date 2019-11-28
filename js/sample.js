@@ -6,6 +6,8 @@ blocks = [
 		content: {
 			tagName: 'input',
 			components: '',
+			type: "prop1",
+			
 			attributes: {
 				readonly: 'readonly',
 				ty: 'input'
@@ -216,13 +218,8 @@ blocks = [
 		label: 'app mesh',
 		category: 'Layouts',
 		content: {
-			attributes: {
-				ty: 'mesh',
-				class: 'row',
-			},
-			class: 'row',
-			components: '<div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div><div class="col-sm-2" style="height:110px" ty="meshcell"></div>',
-			type: "",
+			components: '<div class="row"><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div></div>',
+			type: "prop1",
 		},
 		image: "Ap mesh.svg",
 	},
@@ -353,6 +350,16 @@ properties = [
 		]
 	},
 ]
+
+
+
+
+
+
+
+
+
+
 
 
 

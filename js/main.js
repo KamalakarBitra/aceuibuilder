@@ -31,5 +31,3 @@ if (tenant_id) {
 
 
 
-// // ...tabs...
-
