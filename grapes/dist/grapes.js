@@ -21426,14 +21426,14 @@ function getUrlParameter(sParam) {
                      * scripts: [ 'https://...1.js', 'https://...2.js' ]
                      */
                     // scripts: ['https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js','https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js','https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js'],
-                    scripts:['https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js','https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js','js/main.js'],
+                    scripts: ['js/jquery.min.js','js/bootstrap.min.js','js/main.js'],
                     /*
                      * Append external styles to the `<head>` of the iframe
                      * Be aware that these styles will not be printed in the export code
                      * @example
                      * styles: [ 'https://...1.css', 'https://...2.css' ]
                      */
-                    styles: ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css','js/css/styles.css'],
+                    styles: ['js/css/bootstrap.css','js/css/styles.css'],
 
                     /**
                      * Add custom badge naming strategy
@@ -21441,12 +21441,13 @@ function getUrlParameter(sParam) {
                      * customBadgeLabel: function(component) {
                      *  return component.getName();
                      * }
-                     */
+                    */
                     customBadgeLabel: '',
 
                     /**
                      * Indicate when to start the auto scroll of the canvas on component/block dragging (value in px )
                      */
+                    
                     autoscrollLimit: 50,
 
                     /**
@@ -37874,7 +37875,7 @@ function getUrlParameter(sParam) {
                             label: 'Save',
                             context: 'show-json',
                             command(editor) {
-                                sampleClick(JSON.stringify(editor.getWrapper()))
+                                sampleClick(JSON.stringify(editor.getComponents()))
                             //   editor.Modal.setTitle('Components JSON')
                             //     .setContent(`<textarea style="width:100%; height: 250px;">
                             //       ${JSON.stringify(editor.getComponents())}
@@ -47720,7 +47721,7 @@ function getUrlParameter(sParam) {
                          * Initialize module
                          * @param {Object} config Configurations
                          * @private
-                         */
+                        **/
                         init: function init() {
                             var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
                             config = _objectSpread({}, opts, {}, configDef);
