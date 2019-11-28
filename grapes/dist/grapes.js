@@ -1,5 +1,4 @@
-var queueid = getUrlParameter("queueid");
-var queue_unique_name = getUrlParameter('queue_unique_name');
+var queue_name = getUrlParameter("queue_name");
 var tenant_id = getUrlParameter('tenant_id')
 
 function getUrlParameter(sParam) {
@@ -22670,8 +22669,7 @@ function getUrlParameter(sParam) {
                     tagName: 'iframe',
                     attributes: {
                         'allowfullscreen': 'allowfullscreen',
-                        'queueid': queueid,
-                        'queue_unique_name': queue_unique_name,
+                        'queue_name': queue_name,
                         'tenant_id': tenant_id,
                         'id': 'add-custom-id'
                     },

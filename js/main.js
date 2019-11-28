@@ -1,17 +1,16 @@
 dynamicUrl = 'http://54.224.111.149:5002'
 
-var queueid = window.frameElement.getAttribute("queueid");
-var queue_unique_name = window.frameElement.getAttribute('queue_unique_name');
+var queue_name = window.frameElement.getAttribute("queue_name");
 var tenant_id = window.frameElement.getAttribute('tenant_id');
 tenant_id = 'AB'
-console.log(queueid, queue_unique_name, tenant_id);
+console.log(queue_name, tenant_id);
 
 
 if (tenant_id) {
     sendObj = {}
     sendObj.tenant_id = tenant_id;
     sendObj.flag = 'fetch_layout';
-    sendObj.queueid = queueid;
+    sendObj.queue_name = queue_name;
     sendObj.classification = 'Layout'
 
     var settings11 = {

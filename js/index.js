@@ -1,7 +1,6 @@
 dynamicUrl = 'http://54.224.111.149:5002'
 
-var queueid = getUrlParameter("queueid");
-var queue_unique_name = getUrlParameter('queue_unique_name');
+var queue_name = getUrlParameter("queue_name");
 var tenant_id = getUrlParameter('tenant_id');
 
 function getUrlParameter(sParam) {
@@ -35,48 +34,36 @@ var editor = grapesjs.init({
 });
 
 function sampleClick(comps) {
-    console.log(comps);
     output = [];
     convertor(JSON.parse(comps), output)
     
-    // editor.on('block:drag:stop', function (droppedComponent) {
-    //     console.log('hello')
-    // })   
-    
-    
-    
-    // a = JSON.parse(comps)
-    // allTabs = {};
-    // final_tab = []
-    // tab_fields = []
+    setTimeout(() => {
+        console.log(output);
+        sendObj = {
+            flag: 'save_layout',
+        }
+        sendObj.classification = 'Layout'
+        sendObj.data = output;
+        sendObj.queue_name = queue_name
+        sendObj.template = JSON.stringify(editor.getComponents())
+        sendObj.tenant_id = tenant_id
 
-    // sendObj = {
-    //     flag: 'save_layout',
-    // }
-    // sendObj.classification = 'Layout'
-    // sendObj.queueid = sessionStorage.getItem('id')
-    // sendObj.template = JSON.stringify(editor.getComponents())
-    // sendObj.tenant_id = tenant_id
+        console.log(sendObj);
 
-    // console.log(sendObj);
+        var settings11 = {
+            "async": true,
+            "crossDomain": true,
+            "url": dynamicUrl + "/builder_components",
+            "method": "POST",
+            "processData": false,
+            "contentType": "application/json",
+            "data": JSON.stringify(sendObj)
+        };
 
-    // var settings11 = {
-    //     "async": true,
-    //     "crossDomain": true,
-    //     "url": dynamicUrl + "/builder_components",
-    //     "method": "POST",
-    //     "processData": false,
-    //     "contentType": "application/json",
-    //     "data": JSON.stringify(sendObj)
-    // };
-
-    // $.ajax(settings11).done(function (resp) {
-    //     console.log(resp);
-
-    // })
-    
-    
-
+        $.ajax(settings11).done(function (resp) {
+            console.log(resp);
+        })
+    }, 2000);
 }
 
 allProperties = properties
@@ -91,15 +78,15 @@ function convertor(_input, output) {
         
         var get_id = temp_obj.attributes['id'];
         var ele = document.getElementById("add-custom-id").contentWindow.document.getElementById(get_id);
+        width = 0;
+        height = 0;
         if (ele) {
             parent_id = ele.parentElement.id
-            temp_obj.width = ele.offsetWidth;
-            temp_obj.height = ele.offsetHeight;
+            width = ele.offsetWidth;
+            height = ele.offsetHeight;
         }
         else {
             parent_id = null
-            temp_obj.width = 0;
-            temp_obj.height = 0;
         }
         temp_obj.attributes.parent_id = parent_id
         
@@ -115,7 +102,9 @@ function convertor(_input, output) {
                 }
             }
         }
-        // _input = temp_obj;
+        
+        temp_obj.props.push({ attribute_master_name: 'width', attribute_value: width })
+        temp_obj.props.push({ attribute_master_name: 'height', attribute_value: height })
         output.push(temp_obj)
     }
     if ($.type(_input) == "array") {
@@ -126,7 +115,6 @@ function convertor(_input, output) {
     else if ($.type(_input) == "object" && "components" in _input) {
         output = convertor(_input["components"], output)
     }
-    console.log(JSON.stringify(output), _input);
     return output
 }
 

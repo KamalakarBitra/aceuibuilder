@@ -18,7 +18,6 @@ blocks = [
 		},
 		image: "Text Box.svg",
 	},
-
 	{
 		id: 2,
 		label: 'select',
@@ -202,7 +201,7 @@ blocks = [
 		label: 'image',
 		category: 'components',
 		content: {
-			tagName: "image",
+			tagName: "img",
 			components: "",
 			attributes: {
 				ty: 'image',
