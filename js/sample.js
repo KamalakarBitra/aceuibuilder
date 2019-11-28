@@ -8,7 +8,7 @@ blocks = [
 		// command: 'some-command',
 		content: {
 			tagName: 'input',
-			components: '<input type="text">',
+			components: '',
 			type: "prop1",
 			
 			attributes: {
@@ -270,7 +270,7 @@ blocks = [
 		label: 'app mesh',
 		category: 'Layouts',
 		content: {
-			components: ' <div class="row" style="margin:0px !important"> <div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div><div class="col-sm-2" style="height:110px"></div></div>',
+			components: '<div class="row"><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div></div>',
 			type: "prop1",
 		},
 		// icon: 'fa fa-table',
@@ -427,6 +427,16 @@ properties = [
 		]
 	},
 ]
+
+
+
+
+
+
+
+
+
+
 
 
 

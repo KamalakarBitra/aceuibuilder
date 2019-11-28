@@ -25626,6 +25626,18 @@ function getUrlParameter(sParam) {
                         var bm = editor.BlockManager;
                         var pn = editor.Panels;
 
+
+                       
+
+
+
+
+
+
+
+
+
+
                         if (!this.blocks) {
                             bm.render();
                             var id = 'views-container';
@@ -37855,6 +37867,7 @@ function getUrlParameter(sParam) {
                                 title: 'View components'
                             }
                         },
+                        
                         {
                             id: 'show-json',
                             className: 'btn-show-json',
@@ -37869,6 +37882,16 @@ function getUrlParameter(sParam) {
                             //     .open();
                             },
                           },
+                          
+                        //   {
+                           
+                        //     className: 'fa fa-trash-o',
+                        //     command:'tlb-delete',
+                        //     attributes: {
+                        //         title: 'clear canvas'
+                        //     }
+                        //   },
+
                           {
                             id: expt,
                             className: 'fa fa-code',
@@ -37876,7 +37899,8 @@ function getUrlParameter(sParam) {
                             attributes: {
                               title: 'View code'
                             }
-                          }
+                          },
+                         
 
                     ]
                     },
@@ -37893,6 +37917,7 @@ function getUrlParameter(sParam) {
                                     title: 'Settings'
                                 }
                             },
+                          
                             // {
                             // id: osm,
                             // className: 'fa fa-paint-brush',

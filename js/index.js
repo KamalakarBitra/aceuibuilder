@@ -35,6 +35,13 @@ var editor = grapesjs.init({
     }
 });
 
+
+
+
+
+
+
+
 function sampleClick(comps) {
     console.log(comps);
     output = [];
@@ -81,8 +88,6 @@ function sampleClick(comps) {
 }
 
 function convertor(_input, output) {
-    
-    
     if ($.type(_input) == "object") {
         keys_ = Object.keys(_input)
         if (keys_.length == 1 || keys_[0] == 'content') {
@@ -335,6 +340,17 @@ editor.DomComponents.addType('text', {
         },
     },
 });
+
+
+
+editor.setComponents(`
+
+
+
+
+
+
+`)
 // editor.setComponents({
 //     type: 'tabs',
 //     classes: ['cls'],
@@ -349,15 +365,7 @@ editor.DomComponents.addType('text', {
 // <img src="js/Updated Icons/User Management.svg">
 /* <li><a href=""><img src="js/Updated Icons/logo.svg" style="height:20px"></a></li> */
 
-editor.setComponents(`
-<div type="text" required id="inac" style="height:60px;background:#9c27b0bf;color:white;text-align:right">
-<img src="js/Updated Icons/ace_logo.png" style="height: 60px;float: left;margin-left: 20px;">
-<img src="js/Updated Icons/User Management.svg" style="margin-top:10px;margin-top: 10px;width: 39px;float: right;margin-right: 29px;">
-<input type="search" placeholder="search...." style="margin-top:10px;float:center" >
-</div>
-
-
-`)
+editor.setComponents('<div type="text" required id="inac" style="height:60px;background:#9c27b0bf;color:white;text-align:right"> <img src="js/Updated Icons/ace_logo.png" style="height: 60px;float: left;margin-left: 20px;"> <img src="js/Updated Icons/User Management.svg" style="margin-top:10px;margin-top: 10px;width: 39px;float: right;margin-right: 29px;"> <input type="search" placeholder="search...." style="margin-top:10px;float:center" ></div><div class="row"><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div></div>')
 
 {/* <div>
 <div data-tabs="1" id="i6gi">
@@ -576,6 +584,20 @@ for (i = 0; i < blocks.length; i++) {
       
     });
 }
+
+
+
+
+
+
+
+editor.Commands.add('cmdClear', () => editor.DomComponents.clear() );
+
+
+
+
+
+
 
 
 editor.TraitManager.addType('display_name', {
