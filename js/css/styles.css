@@ -172,7 +172,22 @@ li {
 
 
 .gjs-dashed div {
+  /* position: absolute; */
+  /* z-index: 1; */
+  background: #ffffff;
+}
+
+[property = absolute]{
   position: absolute;
   z-index: 1;
-  background: #ffffff;
+}
+.tab-content{
+  position: relative !important;
+}
+[data-gjs-type=tabs]{
+  position: absolute;
+  z-index: 1;
+}
+[ty="meshcell"]{
+  position: relative !important;
 }

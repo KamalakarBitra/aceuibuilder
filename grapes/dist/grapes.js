@@ -1,6 +1,7 @@
 var queue_name = getUrlParameter("queue_name");
 var tenant_id = getUrlParameter('tenant_id')
-
+var new_id_create;
+var new_attr;
 function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
@@ -30469,7 +30470,7 @@ function getUrlParameter(sParam) {
                      */
                     createId: function createId(model) {
                         var list = Component.getList(model);
-
+                        new_attr = model.attributes.attributes.ty
                         var _model$get = model.get('attributes'),
                             id = _model$get.id;
 
@@ -30487,10 +30488,13 @@ function getUrlParameter(sParam) {
                     },
                     getNewId: function getNewId(list) {
                         var count = Object.keys(list).length; // Testing 1000000 components with `+ 2` returns 0 collisions
-
+                        
                         var ilen = count.toString().length + 2;
+                        new_id_create = queue_name+'_'+new_attr+'_'+ilen;
+                        // var uid = (Math.random() + 1.1).toString(36).slice(-ilen);
+                        // var newId = "i".concat(uid);
                         var uid = (Math.random() + 1.1).toString(36).slice(-ilen);
-                        var newId = "i".concat(uid);
+                        var newId = (new_id_create+''+uid).toString(36)
 
                         while (list[newId]) {
                             newId = Component.getNewId(list);
@@ -30499,6 +30503,7 @@ function getUrlParameter(sParam) {
                         return newId;
                     },
                     getIncrementId: function getIncrementId(id, list) {
+                        
                         var counter = 1;
                         var newId = id;
 
