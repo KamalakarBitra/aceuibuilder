@@ -10,7 +10,16 @@ blocks = [
 			
 			attributes: {
 				readonly: 'readonly',
-				ty: 'input'
+				ty: 'input',
+				property:'absolute'
+				
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 			type: "fields",
 			style: {
@@ -29,7 +38,15 @@ blocks = [
 			components: '',
 			attributes: {
 				readonly: 'readonly',
-				ty: 'select'
+				ty: 'select',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 			type: 'prop1',
 			style: {
@@ -48,7 +65,15 @@ blocks = [
 			components: '',
 			attributes: {
 				readonly: 'readonly',
-				ty: 'textarea'
+				ty: 'textarea',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 			type: "fields",
 			style: {
@@ -66,7 +91,15 @@ blocks = [
 			tagName: 'checkbox',
 			components: '',
 			attributes: {
-				ty: 'checkbox'
+				ty: 'checkbox',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 			type: 'prop1',
 		},
@@ -81,7 +114,15 @@ blocks = [
 			components: '',
 			attributes: {
 				ty: 'upload',
+				property:'absolute',
 				type: 'file'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 			type: 'prop1',
 		},
@@ -95,7 +136,15 @@ blocks = [
 			tagName: 'div',
 			components: '',
 			attributes: {
-				ty: 'table'
+				ty: 'table',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 			type: 'prop1',
 		},
@@ -107,9 +156,17 @@ blocks = [
 		category: 'basic',
 		content: {
 			tagName: "div",
-			components: "",
+			components: '<div class="col-lg-12" ty="1column"><p>Sample Test</p></div>',
 			attributes: {
-				ty: '1 column'
+				ty: '1column',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 			type: "fields",
 			style: {
@@ -128,10 +185,18 @@ blocks = [
 		category: 'basic',
 		content: {
 			tagName: "div",
-			components: '<div class="col-sm-6"></div><div class="col-sm-6"></div>',
+			components: '<div class="col-sm-6" ty="2column"><p>Sample Test</p></div><div class="col-sm-6" ty="2column"><p>Sample Test</p></div>',
 			attributes: {
-				ty: '2 column',
+				ty: '2column',
+				property:'absolute',
 				class: 'row',
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 			type: "fields",
 			style: {
@@ -149,10 +214,18 @@ blocks = [
 		label: '3 column',
 		category: 'basic',
 		content: {
-			components: '<div class="col-sm-4"></div><div class="col-sm-4"></div><div class="col-sm-4"></div>',
+			components: '<div class="col-sm-4" ty="3column"><p>Sample Test</p></div><div class="col-sm-4" ty="3column"><p>Sample Test</p></div><div class="col-sm-4" ty="3column"><p>Sample Test</p></div>',
 			attributes: {
-				ty: '3 column',
+				ty: '3column',
+				property:'absolute',
 				class: 'row',
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 			type: "fields",
 			style: {
@@ -169,10 +242,18 @@ blocks = [
 		label: '4 column',
 		category: 'basic',
 		content: {
-			components: '<div class="col-sm-3"></div><div class="col-sm-3"></div><div class="col-sm-3"></div><div class="col-sm-3"></div>',
+			components: '<div class="col-sm-3" ty="4column"><p>Sample Test</p></div><div class="col-sm-3" ty="4column"><p>Sample Test</p></div><div class="col-sm-3" ty="4column"><p>Sample Test</p></div><div class="col-sm-3" ty="4column"><p>Sample Test</p></div>',
 			attributes: {
-				ty: '4 column',
+				ty: '4column',
 				class: 'row',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 			type: "fields",
 			style: {
@@ -191,7 +272,15 @@ blocks = [
 			tagName: "button",
 			components: "button",
 			attributes: {
-				ty: 'button'
+				ty: 'button',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 			type: "fields",
 		},
@@ -207,7 +296,15 @@ blocks = [
 			components: "",
 			attributes: {
 				ty: 'image',
-				src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&w=500&q=80'
+				src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&w=500&q=80',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
 			},
 		},
 		type: "fields",
@@ -218,8 +315,11 @@ blocks = [
 		label: 'app mesh',
 		category: 'Layouts',
 		content: {
-			components: '<div class="row"><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div><div style="width:12.5%;height:110px"></div></div>',
+			components: '<div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div>',
 			type: "prop1",
+			attributes:{
+				ty:'mesh'
+			},
 		},
 		image: "Ap mesh.svg",
 	},
@@ -229,12 +329,21 @@ blocks = [
 		category: 'fields',
 		content: {
 			attributes:{
-				ty:'form'
+				ty:'form',
+				property:'absolute'
 			},
 			tagName: "form",
 			components: '',
 			type: "fields",
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
 		},
+		
 		image: "form.svg",
 	},
 	{
@@ -245,10 +354,18 @@ blocks = [
 			tagName:'Image',
 			attributes:{
 				src:'js/Updated Icons/User Management.svg',
-				ty:'profile'
+				ty:'profile',
+				property:'absolute'
 			},
 			components: '',
 			type: "fields",
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			}
 		},
 		image: "Image.svg",
 	},

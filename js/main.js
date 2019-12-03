@@ -11,7 +11,7 @@ if (tenant_id) {
     sendObj.tenant_id = tenant_id;
     sendObj.flag = 'fetch_layout';
     sendObj.queue_name = queue_name;
-    sendObj.main_screen = "Layout Home"
+    sendObj.main_screen = queue_name;
     sendObj.classification = 'Layout'
 
     var settings11 = {
