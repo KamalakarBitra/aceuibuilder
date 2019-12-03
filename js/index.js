@@ -52,7 +52,7 @@ function sampleClick(comps) {
         sendObj.classification = 'Layout'
         sendObj.data = output;
         sendObj.queue_name = queue_name
-        sendObj.template = JSON.stringify(editor.getComponents())
+        sendObj.template = JSON.stringify({'jsonTemplate':editor.getComponents(), 'htmlTemplate': editor.getHtml()})
         sendObj.tenant_id = tenant_id
 
         console.log(sendObj);
