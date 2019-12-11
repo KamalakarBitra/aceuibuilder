@@ -462,6 +462,12 @@ properties = [
 				label: 'Consider field for export',
 
 			},
+			{
+				type: 'button',
+				text: 'Add Rule',
+				value: 'rule',
+				command : editor => addRuleModal("rule")
+			}
 
 
 		]

@@ -69,6 +69,13 @@ function sampleClick(comps) {
 
         $.ajax(settings11).done(function (resp) {
             console.log(resp);
+            if(resp.flag==true){
+                $.alert({
+                    title: 'Alert!',
+                    content: resp.message,
+                });
+
+            }
         })
     }, 2000);
 }
@@ -654,5 +661,8 @@ pn.getButton('options', 'sw-visibility').set('active', 1);
 function dosomething(val){
     console.log(val);
 }
-    
+function addRuleModal(rule){
+    console.log('rule');
+    window.parent.$('#openSCBiz').click();
+}
 
