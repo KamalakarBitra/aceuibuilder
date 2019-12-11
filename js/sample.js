@@ -6,7 +6,7 @@ blocks = [
 		content: {
 			tagName: 'input',
 			components: '',
-			type: "prop1",
+			type:"fields",
 			
 			attributes: {
 				readonly: 'readonly',
@@ -21,7 +21,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: "fields",
+			type:"prop1",
 			style: {
 				width: '100%'
 
@@ -75,7 +75,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: "fields",
+			type:"prop1",
 			style: {
 				width: '100%'
 			}
@@ -168,7 +168,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: "fields",
+			type:"prop1",
 			style: {
 				width: '100%',
 				height: '100px',
@@ -198,7 +198,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: "fields",
+			type:"prop1",
 			style: {
 				width: '100%',
 				height: '100px',
@@ -227,7 +227,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: "fields",
+			type:"prop1",
 			style: {
 				
 				margin:'0px !important'
@@ -255,7 +255,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: "fields",
+			type:"prop1",
 			style: {
 				
 				
@@ -282,7 +282,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: "fields",
+			type:"prop1",
 		},
 		// icon: 'fa fa-minus-square-o',
 		image: "group 3.svg",
@@ -307,7 +307,7 @@ blocks = [
 				bl: 0, // Bottom left
 			},
 		},
-		type: "fields",
+		type:"prop1",
 		image: "Image.svg",
 	},
 	{
@@ -316,7 +316,7 @@ blocks = [
 		category: 'Layouts',
 		content: {
 			components: '<div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div><div style="width:12.5%;height:110px" ty="meshcell"></div>',
-			type: "prop1",
+			type:"fields",
 			attributes:{
 				ty:'mesh'
 			},
@@ -334,7 +334,7 @@ blocks = [
 			},
 			tagName: "form",
 			components: '',
-			type: "fields",
+			type:"prop1",
 			resizable: {
 				tl: 0, // Top left
 				tc: 0, // Top center
@@ -358,7 +358,7 @@ blocks = [
 				property:'absolute'
 			},
 			components: '',
-			type: "fields",
+			type:"prop1",
 			resizable: {
 				tl: 0, // Top left
 				tc: 0, // Top center

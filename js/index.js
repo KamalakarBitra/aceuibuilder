@@ -661,8 +661,25 @@ pn.getButton('options', 'sw-visibility').set('active', 1);
 function dosomething(val){
     console.log(val);
 }
+// function addRuleModal(rule){
+//     // console.log('rule', $("#iframe"));
+//     var s = $("#iframe");
+//     var x  = $('#gjs iframe').children('.gjs-dashed')
+//     console.log($('#gjs iframe'));
+
+//     var doc=$('#gjs iframe');
+//     access()
+    
+//     // console.log(s,x)
+//     // window.HTMLIFrameElement.getAttributes('.')
+//     // window.parent.$('#openSCBiz').click();
+// }
+
 function addRuleModal(rule){
-    console.log('rule');
+    var iframeEle = $("#add-custom-id").contents().find('.gjs-comp-selected');
+    console.log(iframeEle.attr('id'));
+    sessionStorage.setItem('screen_bz_click', iframeEle.attr('id'))
+
     window.parent.$('#openSCBiz').click();
-}
+ }
 
