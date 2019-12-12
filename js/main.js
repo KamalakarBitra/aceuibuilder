@@ -13,6 +13,7 @@ if (tenant_id) {
     sendObj.queue_name = queue_name;
     sendObj.main_screen = queue_name;
     sendObj.classification = 'Layout'
+    sendObj.template_type = 'layout'
 
     var settings11 = {
         "async": true,
@@ -26,7 +27,7 @@ if (tenant_id) {
 
     $.ajax(settings11).done(function (resp) {
         console.log(resp);
-        window.parent.getCall(resp)
+        window.parent.getCall(resp, queue_name)
     })
 }
 

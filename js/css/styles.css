@@ -190,4 +190,6 @@ li {
 }
 [ty="meshcell"]{
   position: relative !important;
+  width: 12.5% !important;
+  height: 110px !important;
 }
