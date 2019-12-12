@@ -146,8 +146,6 @@ function getCall(res, queue_name) {
     data = res.data.components;
     all_options = res.data.dropdown;
     tempHtml = JSON.parse(res.template)[queue_name].htmlTemplate || '';
-    // tempHtml = ''
-    debugger
     arr = []
     properties = []
     for (i = 0; i < data.length; i++) {
