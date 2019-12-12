@@ -30480,26 +30480,37 @@ function getUrlParameter(sParam) {
                             nextId = Component.getIncrementId(id, list);
                             model.setId(nextId);
                         } else {
-                            nextId = Component.getNewId(list);
+                            nextId = Component.getNewId(list, model);
                         }
 
                         list[nextId] = model;
                         return nextId;
                     },
-                    getNewId: function getNewId(list) {
+                    getNewId: function getNewId(list, cmp) {
+                        var attr_count;
                         var count = Object.keys(list).length; // Testing 1000000 components with `+ 2` returns 0 collisions
-                        
-                        var ilen = count.toString().length + 2;
-                        new_id_create = queue_name+'_'+new_attr+'_'+ilen;
+                            console.log(cmp);
+                            
+                            try {
+                                attr_count = cmp.attributes.attributes.m_count;
+                            } catch (error) {
+                                debugger
+                                attr_count = count;
+                            }
+                            console.log(attr_count);
+                            attr_count = attr_count || count;
+                            queue_name = queue_name || ''
+                        var ilen = count;
+                        // var ilen = count;
+                        new_id_create = queue_name+'_'+new_attr+'_'+attr_count;
                         // var uid = (Math.random() + 1.1).toString(36).slice(-ilen);
                         // var newId = "i".concat(uid);
                         var uid = (Math.random() + 1.1).toString(36).slice(-ilen);
-                        var newId = (new_id_create+''+uid).toString(36)
-
+                        var newId = new_id_create
+                        console.log(newId)
                         while (list[newId]) {
                             newId = Component.getNewId(list);
                         }
-
                         return newId;
                     },
                     getIncrementId: function getIncrementId(id, list) {
