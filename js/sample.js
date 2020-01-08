@@ -156,10 +156,11 @@ blocks = [
 		category: 'basic',
 		content: {
 			tagName: "div",
-			components: '<div class="col-lg-12" ty="1column"><p>Sample Test</p></div>',
+			components: '<div class="col-lg-12" ty="1column"></div>',
 			attributes: {
 				ty: '1column',
-				property:'absolute'
+				property: 'absolute',
+				fullwidth: 'true'
 			},
 			resizable: {
 				tl: 0, // Top left
@@ -185,11 +186,12 @@ blocks = [
 		category: 'basic',
 		content: {
 			tagName: "div",
-			components: '<div class="col-sm-6" ty="2column"><p>Sample Test</p></div><div class="col-sm-6" ty="2column"><p>Sample Test</p></div>',
+			components: '<div class="col-sm-6" ty="2column"></div><div class="col-sm-6" ty="2column"></div>',
 			attributes: {
 				ty: '2column',
 				property:'absolute',
 				class: 'row',
+				fullwidth: 'true'
 			},
 			resizable: {
 				tl: 0, // Top left
@@ -214,11 +216,13 @@ blocks = [
 		label: '3 column',
 		category: 'basic',
 		content: {
-			components: '<div class="col-sm-4" ty="3column"><p>Sample Test</p></div><div class="col-sm-4" ty="3column"><p>Sample Test</p></div><div class="col-sm-4" ty="3column"><p>Sample Test</p></div>',
+			tagName: "div",
+			components: '<div class="col-sm-4" ty="3column"></div><div class="col-sm-4" ty="3column"></div><div class="col-sm-4" ty="3column"></div>',
 			attributes: {
 				ty: '3column',
 				property:'absolute',
 				class: 'row',
+				fullwidth: 'true'
 			},
 			resizable: {
 				tl: 0, // Top left
@@ -242,11 +246,13 @@ blocks = [
 		label: '4 column',
 		category: 'basic',
 		content: {
-			components: '<div class="col-sm-3" ty="4column"><p>Sample Test</p></div><div class="col-sm-3" ty="4column"><p>Sample Test</p></div><div class="col-sm-3" ty="4column"><p>Sample Test</p></div><div class="col-sm-3" ty="4column"><p>Sample Test</p></div>',
+			tagName: "div",	
+			components: '<div class="col-sm-3" ty="4column"></div><div class="col-sm-3" ty="4column"></div><div class="col-sm-3" ty="4column"></div><div class="col-sm-3" ty="4column"></div>',
 			attributes: {
 				ty: '4column',
 				class: 'row',
-				property:'absolute'
+				property: 'absolute',
+				fullwidth: 'true'
 			},
 			resizable: {
 				tl: 0, // Top left

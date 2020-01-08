@@ -191,8 +191,25 @@ li {
   position: absolute;
   z-index: 1;
 }
-[ty="meshcell"]{
+
+[ty="meshcell"] {
   position: relative !important;
-  width: 12.5% !important;
+  float: left;
+  width: calc(100% / 8);
   height: 110px !important;
+}
+
+[ty="tabs"] * {
+  position: initial !important;
+}
+
+[ty="1column"],
+[ty="2column"],
+[ty="3column"],
+[ty="4column"] {
+  min-height: 200px;
+}
+
+[fullwidth='true'] {
+  width: 100% !important;
 }

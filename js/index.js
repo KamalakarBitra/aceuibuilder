@@ -49,7 +49,10 @@ function sampleClick(comps) {
     setTimeout(() => {
         console.log(output);
         tem_obj = {}
-        tem_obj[queue_name] = {'jsonTemplate':editor.getComponents(), 'htmlTemplate': $("#add-custom-id").contents().find('#wrapper').html()}
+        tem_obj[queue_name] = {
+            'jsonTemplate': editor.getComponents(),
+            'htmlTemplate': $("#add-custom-id").contents().find('#wrapper').html() + '' + $("#add-custom-id").contents().find(".gjs-css-rules").html() + '' + $("#add-custom-id").contents().find(".gjs-js-cont").html()
+        }
 
         sendObj = {
             flag: 'save_layout',
