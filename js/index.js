@@ -1,4 +1,4 @@
-dynamicUrl = 'http://54.224.111.149:5002'
+dynamicUrl = 'http://54.197.10.114:5002'
 
 
 var tempHtml
