@@ -30,15 +30,68 @@ blocks = [
 		image: "Text Box.svg",
 	},
 	{
+		id: '18',
+		label: 'Number',
+		category: 'fields',
+		content: {
+			tagName: 'input',
+			components: '',
+			type:"fields",
+			
+			attributes: {
+				readonly: 'readonly',
+				ty: 'input',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type:"prop1",
+			style: {
+				width: '100%'
+			}
+		},
+		image: "number.svg",
+	},
+	{
+		id: '0',
+		label: 'Radio',
+		category: 'fields',
+		content: {
+			tagName: 'radio',
+			components: '',
+			type:"fields",
+			
+			attributes: {
+				readonly: 'readonly',
+				ty: 'input',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type:"prop1"
+		},
+		image: "radio.svg",
+	},
+	{
 		id: 2, 
 		label: 'select',
 		category: 'fields',
 		content: {
-			tagName: 'select',
+			tagName: 'input',
 			components: '',
 			attributes: {
 				readonly: 'readonly',
-				ty: 'select',
+				ty: 'input',
 				property:'absolute'
 			},
 			resizable: {
@@ -50,7 +103,7 @@ blocks = [
 			},
 			type: 'prop1',
 			style: {
-				width: '100px'
+				width: '100%'
 			}
 
 		},
@@ -115,7 +168,7 @@ blocks = [
 			attributes: {
 				ty: 'upload',
 				property:'absolute',
-				type: 'file'
+				type: 'text'
 			},
 			resizable: {
 				tl: 0, // Top left
@@ -125,6 +178,9 @@ blocks = [
 				bl: 0, // Bottom left
 			},
 			type: 'prop1',
+			style: {
+				width: '100%'
+			}
 		},
 		image: "Upload File.svg",
 	},
@@ -133,11 +189,12 @@ blocks = [
 		label: 'table',
 		category: 'fields',
 		content: {
+			droppable:'true',
 			tagName: 'div',
-			components: '',
+			components: 'Table',
 			attributes: {
 				ty: 'table',
-				property:'absolute'
+				property:'absolute',				
 			},
 			resizable: {
 				tl: 0, // Top left
@@ -147,6 +204,8 @@ blocks = [
 				bl: 0, // Bottom left
 			},
 			type: 'prop1',
+			droppable: 'false'
+
 		},
 		image: "Table.svg",
 	},
@@ -233,7 +292,8 @@ blocks = [
 			},
 			type:"prop1",
 			style: {
-				
+				width: '100%',
+				height: '100px',
 				margin:'0px !important'
 			},
 		},
@@ -263,8 +323,9 @@ blocks = [
 			},
 			type:"prop1",
 			style: {
-				
-				
+				width: '90%',
+				height: '100px',
+				margin:'0px !important'
 			},
 		},
 		icon: 'fa fa-align-justify',
@@ -275,7 +336,7 @@ blocks = [
 		label: 'button',
 		category: 'fields',
 		content: {
-			tagName: "button",
+			tagName: "div",
 			components: "button",
 			attributes: {
 				ty: 'button',
@@ -302,7 +363,7 @@ blocks = [
 			components: "",
 			attributes: {
 				ty: 'image',
-				src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&w=500&q=80',
+				src: 'images/placeholder.jpg',
 				property:'absolute'
 			},
 			resizable: {
@@ -312,8 +373,13 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
+			style: {
+				width: '100%',
+				height:'100%'
+			}
 		},
 		type:"prop1",
+		
 		image: "Image.svg",
 	},
 	{
@@ -354,26 +420,57 @@ blocks = [
 	},
 	{
 		id: 20,
-		label: 'User management',
-		category: 'components',
+		label: 'Timer',
+		category: 'fields',
 		content: {
-			tagName:'Image',
-			attributes:{
-				src:'js/Updated Icons/User Management.svg',
-				ty:'profile',
+			tagName: "div",
+			components: "Timer",
+			attributes: {
+				readonly: 'readonly',
+				ty: 'div',
 				property:'absolute'
 			},
-			components: '',
-			type:"prop1",
 			resizable: {
 				tl: 0, // Top left
 				tc: 0, // Top center
 				tr: 0, // Top right
 				cl: 0, // Center left
 				bl: 0, // Bottom left
+			},
+			type: 'prop1',
+			style: {
+				width: '100%'
 			}
+
 		},
-		image: "Image.svg",
+		image: "timer.svg",
+	},
+	{
+		id: 21,
+		label: 'Queue',
+		category: 'fields',
+		content: {
+			tagName: "div",
+			components: "Queue List",
+			attributes: {
+				readonly: 'readonly',
+				ty: 'div',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type: 'prop1',
+			style: {
+				width: '100%'
+			}
+
+		},
+		image: "queue.svg",
 	},
 ]
 

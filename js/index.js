@@ -36,7 +36,21 @@ var editor = grapesjs.init({
 });
 
 
+var editor = grapesjs.init({
+    showOffsets: 1,
+    showDevices: 0,
+    noticeOnUnload: 0,
+    container: '#gjs',
+    height: '100%',
+    fromElement: true,
+    storageManager: {
+        autoload: 0
+    },
+    plugins: ['grapesjs-tabs-image'],
+    pluginsOpts: {
 
+    }
+});
 
 
 
@@ -692,4 +706,8 @@ function addRuleModal(rule){
 
     window.parent.$('#openSCBiz').click();
  }
+
+ $('body').on('drop', '[ty=table]', function(){
+     console.log('shehnaz')
+ })
 
