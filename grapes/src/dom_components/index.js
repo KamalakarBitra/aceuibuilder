@@ -486,6 +486,7 @@ export default () => {
      */
     getComponents() {
       return this.getWrapper().get('components');
+      console.log(this.getWrapper().get('components'))
     },
 
     /**

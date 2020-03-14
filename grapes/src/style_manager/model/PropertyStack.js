@@ -22,6 +22,7 @@ export default Property.extend({
     layersColl.properties = this.get('properties');
     this.set('layers', layersColl);
     Property.callInit(this, props, opts);
+    console.log(props)
   },
 
   getLayers() {

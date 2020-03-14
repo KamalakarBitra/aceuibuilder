@@ -40,7 +40,7 @@ blocks = [
 			
 			attributes: {
 				readonly: 'readonly',
-				ty: 'input',
+				ty: 'number',
 				property:'absolute'
 			},
 			resizable: {
@@ -68,7 +68,7 @@ blocks = [
 			
 			attributes: {
 				readonly: 'readonly',
-				ty: 'input',
+				ty: 'radio',
 				property:'absolute'
 			},
 			resizable: {
@@ -91,7 +91,7 @@ blocks = [
 			components: '',
 			attributes: {
 				readonly: 'readonly',
-				ty: 'input',
+				ty: 'select',
 				property:'absolute'
 			},
 			resizable: {
@@ -454,7 +454,7 @@ blocks = [
 			components: "Queue List",
 			attributes: {
 				readonly: 'readonly',
-				ty: 'div',
+				ty: 'queue',
 				property:'absolute'
 			},
 			resizable: {
@@ -471,6 +471,7 @@ blocks = [
 
 		},
 		image: "queue.svg",
+		type:'plus'
 	},
 ]
 
@@ -487,7 +488,45 @@ properties = [
 				// command: editor =>dosomething(this),
 				// attributes: {style: 'display: none'}
 			},
-
+			{
+				property: 'transition',
+				type: 'stack',
+				properties: [
+				  {
+					property: 'transition-property',
+					type: 'select',
+					defaults: 'width',
+					list: [
+					  { value: 'all' },
+					  { value: 'width' },
+					  { value: 'height' },
+					  { value: 'background-color' },
+					  { value: 'transform' },
+					  { value: 'box-shadow' },
+					  { value: 'opacity' }
+					]
+				  },
+				  {
+					property: 'transition-duration',
+					type: 'integer',
+					units: ['s'],
+					defaults: '2',
+					min: 0
+				  },
+				  {
+					property: 'transition-timing-function',
+					type: 'select',
+					defaults: 'ease',
+					list: [
+					  { value: 'linear' },
+					  { value: 'ease' },
+					  { value: 'ease-in' },
+					  { value: 'ease-out' },
+					  { value: 'ease-in-out' }
+					]
+				  }
+				]
+			  },
 			{
 				
 				type: 'text',
@@ -571,8 +610,6 @@ properties = [
 				value: 'rule',
 				command : editor => addRuleModal("rule")
 			}
-
-
 		]
 	},
 ]

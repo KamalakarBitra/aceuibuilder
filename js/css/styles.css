@@ -257,3 +257,12 @@ nav{
   img{
     width: 100%
   }
+  .styleviewcontainer{
+    position: absolute;
+    right: 0px;
+    height: 93%;
+    width: 16%;
+    z-index: 9999;
+    top: 40px;
+    overflow-x: auto;
+  }

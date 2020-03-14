@@ -35,26 +35,50 @@ var editor = grapesjs.init({
     }
 });
 
-
-var editor = grapesjs.init({
-    showOffsets: 1,
-    showDevices: 0,
-    noticeOnUnload: 0,
-    container: '#gjs',
-    height: '100%',
-    fromElement: true,
-    storageManager: {
-        autoload: 0
-    },
-    plugins: ['grapesjs-tabs-image'],
-    pluginsOpts: {
-
+console.log("-----------------------------------------------");
+var new_dropped_id;
+editor.on('storage:store', function(e) {
+    var newData = JSON.parse(e.styles)
+    var droppedId = sessionStorage.getItem('comp_list')
+    droppedId = JSON.parse(droppedId)
+    console.log(newData)
+    console.log(droppedId);
+    for (let i = 0; i < droppedId.length; i++) {
+        new_dropped_id = droppedId[i].id;
+        console.log(new_dropped_id)
     }
+    debugger
+    // let index = newData.findIndex(x => x === new_dropped_id)
+    // console.log(newData['selectors'][0])
 });
+console.log("-----------------------------------------------");
 
+// var editor = grapesjs.init({
+//     showOffsets: 1,
+//     showDevices: 0,
+//     noticeOnUnload: 0,
+//     container: '#gjs',
+//     height: '100%',
+//     fromElement: true,
+//     storageManager: {
+//         autoload: 0
+//     },
+//     plugins: ['grapesjs-tabs-image'],
+//     pluginsOpts: {
 
+//     }
+// });
 
+editor.on('component:styleUpdate', (some, argument) => {
+    debugger
+    console.log(JSON.stringify(some), argument);
+ })
 
+ editor.setStyle({
+    selectors: ['dependency'],
+    style: { color: 'red' }
+  });
+  
 
 function sampleClick(comps) {
     output = [];
@@ -64,7 +88,7 @@ function sampleClick(comps) {
         console.log(output);
         tem_obj = {}
         tem_obj[queue_name] = {
-            'jsonTemplate': editor.getComponents(),
+            'jsonTsampleClickemplate': editor.getComponents(),
             'htmlTemplate': $("#add-custom-id").contents().find('#wrapper').html() + '' + $("#add-custom-id").contents().find(".gjs-css-rules").html() + '' + $("#add-custom-id").contents().find(".gjs-js-cont").html()
         }
 
@@ -109,7 +133,7 @@ function convertor(_input, output) {
     if ($.type(_input) == "object") {
         temp_obj = Object.assign({}, _input)
         // delete temp_obj['components'];
-        if (!temp_obj.attributes) {
+        if (!temp_obj.attributes) { 
             temp_obj.attributes = {};
         }
         
@@ -126,7 +150,7 @@ function convertor(_input, output) {
             parent_id = null
         }
         temp_obj.attributes.parent_id = parent_id
-        
+        console.log(temp_obj)
         temp_obj.props = []
         if (temp_obj.type) {
             prop_idx = allProperties.findIndex(x => x.id = temp_obj.type);
@@ -159,7 +183,6 @@ function convertor(_input, output) {
 
 function getCall(res, queue_name) {
     // console.log(val.template);
-    
     data = res.data.components;
     all_options = res.data.dropdown;
     temp__ = JSON.parse(res.template)[queue_name]
@@ -493,7 +516,7 @@ const attrsCell = attrsToString(colAttr);
 
 
 
-console.log(blocks);
+// console.log(blocks);
 
 
 for (i = 0; i < properties.length; i++) {

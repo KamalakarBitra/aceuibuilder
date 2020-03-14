@@ -1,5 +1,8 @@
 var queue_name = getUrlParameter("queue_name");
 var tenant_id = getUrlParameter('tenant_id')
+sessionStorage.setItem("comp_list",'[]');
+var newId_;
+var sendObj = {}
 var new_id_create;
 var new_attr;
 function getUrlParameter(sParam) {
@@ -4889,6 +4892,7 @@ function getUrlParameter(sParam) {
                         if (ie && ie_version < 9) { return false }
                         var div = elt('div');
                         return "draggable" in div || "dragDrop" in div
+                        console.log(div)
                     }();
 
                     var zwspSupported;
@@ -10731,6 +10735,7 @@ function getUrlParameter(sParam) {
                     var lastDrop = 0;
 
                     function onDrop(e) {
+                        //debugger
                         var cm = this;
                         clearDragCursor(cm);
                         if (signalDOMEvent(cm, e) || eventInWidget(cm.display, e)) { return }
@@ -10814,6 +10819,7 @@ function getUrlParameter(sParam) {
                     }
 
                     function onDragOver(cm, e) {
+                        //debugger
                         var pos = posFromMouse(cm, e);
                         if (!pos) { return }
                         var frag = document.createDocumentFragment();
@@ -10848,6 +10854,7 @@ function getUrlParameter(sParam) {
                                 for (var i = 0; i < editors.length; i++) { f(editors[i]); }
                             });
                         }
+
                     }
 
                     var globalsRegistered = false;
@@ -14506,8 +14513,8 @@ function getUrlParameter(sParam) {
                         "text-indent", "text-justify", "text-outline", "text-overflow", "text-shadow",
                         "text-size-adjust", "text-space-collapse", "text-transform", "text-underline-position",
                         "text-wrap", "top", "transform", "transform-origin", "transform-style",
-                        "transition", "transition-delay", "transition-duration",
-                        "transition-property", "transition-timing-function", "unicode-bidi",
+                        "transition",  "transition-delay", "transition-duration",
+                        "transition-property","dependency", "ui-events", "ui-components", "transition-timing-function", "unicode-bidi",
                         "user-select", "vertical-align", "visibility", "voice-balance", "voice-duration",
                         "voice-family", "voice-pitch", "voice-range", "voice-rate", "voice-stress",
                         "voice-volume", "volume", "white-space", "widows", "width", "will-change", "word-break",
@@ -15014,7 +15021,7 @@ function getUrlParameter(sParam) {
                             return {
                                 "if": kw("if"), "while": A, "with": A, "else": B, "do": B, "try": B, "finally": B,
                                 "return": D, "break": D, "continue": D, "new": kw("new"), "delete": C, "void": C, "throw": C,
-                                "debugger": kw("debugger"), "var": kw("var"), "const": kw("var"), "let": kw("var"),
+                                "//debugger": kw("//debugger"), "var": kw("var"), "const": kw("var"), "let": kw("var"),
                                 "function": kw("function"), "catch": kw("catch"),
                                 "for": kw("for"), "switch": kw("switch"), "case": kw("case"), "default": kw("default"),
                                 "in": operator, "typeof": operator, "instanceof": operator,
@@ -15344,7 +15351,7 @@ function getUrlParameter(sParam) {
                             if (type == "keyword a") return cont(pushlex("form"), parenExpr, statement, poplex);
                             if (type == "keyword b") return cont(pushlex("form"), statement, poplex);
                             if (type == "keyword d") return cx.stream.match(/^\s*$/, false) ? cont() : cont(pushlex("stat"), maybeexpression, expect(";"), poplex);
-                            if (type == "debugger") return cont(expect(";"));
+                            if (type == "//debugger") return cont(expect(";"));
                             if (type == "{") return cont(pushlex("}"), pushblockcontext, block, poplex, popcontext);
                             if (type == ";") return cont();
                             if (type == "if") {
@@ -16581,6 +16588,7 @@ function getUrlParameter(sParam) {
 
                     // abstract key logic for assign and unassign
                     function getKeys(key) {
+                        debugger
                         var keys;
                         key = key.replace(/\s/g, '');
                         keys = key.split(',');
@@ -20291,6 +20299,7 @@ function getUrlParameter(sParam) {
                      * @private
                      * */
                     initDrop: function initDrop() {
+                        //debugger
                         var that = this;
 
                         if (!this.uploadForm) {
@@ -20319,6 +20328,7 @@ function getUrlParameter(sParam) {
                         }
                     },
                     initDropzone: function initDropzone(ev) {
+                        //debugger
                         var _this2 = this;
 
                         var addedCls = 0;
@@ -20326,6 +20336,7 @@ function getUrlParameter(sParam) {
                         var em = ev.model;
                         var edEl = ev.el;
                         var editor = em.get('Editor');
+                        console.log(editor)
                         var container = em.get('Config').el;
                         var frameEl = em.get('Canvas').getBody();
                         var ppfx = this.ppfx;
@@ -20347,6 +20358,7 @@ function getUrlParameter(sParam) {
                         };
 
                         var onDragLeave = function onDragLeave() {
+                            //debugger
                             cleanEditorElCls();
                             return false;
                         };
@@ -25727,7 +25739,7 @@ function getUrlParameter(sParam) {
                             var config = em.getConfig(),
                                 panels = em.Panels; // Main container
 
-                            this.$cn = $('<div></div>'); // Secondary container
+                            this.$cn = $('<div class="styleviewcontainer"></div>'); // Secondary container
 
                             this.$cn2 = $('<div></div>');
                             this.$cn.append(this.$cn2); // Device Manager
@@ -28966,7 +28978,9 @@ function getUrlParameter(sParam) {
                          * wrapperChildren.remove(comp2);
                          */
                         getComponents: function getComponents() {
+                            //debugger
                             return this.getWrapper().get('components');
+                            console.log(this.getWrapper().get('components'))
                         },
 
                         /**
@@ -30489,15 +30503,14 @@ function getUrlParameter(sParam) {
                     getNewId: function getNewId(list, cmp) {
                         var attr_count;
                         var count = Object.keys(list).length; // Testing 1000000 components with `+ 2` returns 0 collisions
-                            console.log(cmp);
+                            // console.log(cmp);
                             
                             try {
                                 attr_count = cmp.attributes.attributes.m_count;
                             } catch (error) {
-                                debugger
                                 attr_count = count;
                             }
-                            console.log(attr_count);
+                            // console.log(attr_count);
                             attr_count = attr_count || count;
                             queue_name = queue_name || ''
                         var ilen = count;
@@ -30507,7 +30520,7 @@ function getUrlParameter(sParam) {
                         // var newId = "i".concat(uid);
                         var uid = (Math.random() + 1.1).toString(36).slice(-ilen);
                         var newId = new_id_create
-                        console.log(newId)
+                        // console.log(newId)
                         while (list[newId]) {
                             newId = Component.getNewId(list);
                         }
@@ -34742,45 +34755,9 @@ function getUrlParameter(sParam) {
                     //Configurations for Style Manager
                     styleManager: {
                         sectors: [{
-                            name: 'General',
-                            open: false,
-                            buildProps: ['float', 'display', 'position', 'top', 'right', 'left', 'bottom']
-                        }, {
-                            name: 'Flex',
-                            open: false,
-                            buildProps: ['flex-direction', 'flex-wrap', 'justify-content', 'align-items', 'align-content', 'order', 'flex-basis', 'flex-grow', 'flex-shrink', 'align-self']
-                        }, {
-                            name: 'Dimension',
-                            open: false,
-                            buildProps: ['width', 'height', 'max-width', 'min-height', 'margin', 'padding']
-                        }, {
-                            name: 'Typography',
-                            open: false,
-                            buildProps: ['font-family', 'font-size', 'font-weight', 'letter-spacing', 'color', 'line-height', 'text-align', 'text-shadow'],
-                            properties: [{
-                                property: 'text-align',
-                                list: [{
-                                    value: 'left',
-                                    className: 'fa fa-align-left'
-                                }, {
-                                    value: 'center',
-                                    className: 'fa fa-align-center'
-                                }, {
-                                    value: 'right',
-                                    className: 'fa fa-align-right'
-                                }, {
-                                    value: 'justify',
-                                    className: 'fa fa-align-justify'
-                                }]
-                            }]
-                        }, {
-                            name: 'Decorations',
-                            open: false,
-                            buildProps: ['border-radius-c', 'background-color', 'border-radius', 'border', 'box-shadow', 'background']
-                        }, {
-                            name: 'Extra',
-                            open: false,
-                            buildProps: ['transition', 'perspective', 'transform']
+                            name: 'Dependencies',
+                            open: true,
+                            buildProps: ['dependency']
                         }]
                     },
                     // Configurations for Block Manager
@@ -34931,6 +34908,8 @@ function getUrlParameter(sParam) {
 
                     c.pStylePrefix = c.stylePrefix;
                     var em = new _model_Editor__WEBPACK_IMPORTED_MODULE_3__["default"](c);
+                    //debugger
+                    console.log(em)
                     var editorView = new _view_EditorView__WEBPACK_IMPORTED_MODULE_4__["default"]({
                         model: em,
                         config: c
@@ -35027,6 +35006,7 @@ function getUrlParameter(sParam) {
                          * @private
                          */
                         StyleManager: em.get('StyleManager'),
+                        
 
                         /**
                          * @property {Canvas}
@@ -35121,6 +35101,7 @@ function getUrlParameter(sParam) {
                          * @return {Components}
                          */
                         getComponents: function getComponents() {
+                            console.log(em)
                             return em.get('DomComponents').getComponents();
                         },
 
@@ -35559,6 +35540,7 @@ function getUrlParameter(sParam) {
                             return editorView.el;
                         }
                     };
+                    console.log(em.get('StyleManager'))
                 });
 
                 /***/
@@ -37933,16 +37915,16 @@ function getUrlParameter(sParam) {
                                 }
                             },
                           
-                            // {
-                            // id: osm,
-                            // className: 'fa fa-paint-brush',
-                            // command: osm,
-                            // active: true,
-                            // togglable: 0,
-                            // attributes: {
-                            //     title: 'Open Style Manager'
-                            // }
-                            // },
+                            {
+                                id: osm,
+                                className: 'fa fa-paint-brush',
+                                command: osm,
+                                active: true,
+                                togglable: 0,
+                                attributes: {
+                                    title: 'Open Style Manager'
+                                }
+                            },
                             {
                                 id: obl,
                                 active: true,
@@ -39094,8 +39076,9 @@ function getUrlParameter(sParam) {
                     var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
                     var add = [];
                     var result = [];
+                    debugger
                     var sels = str.split(',');
-
+                    
                     for (var i = 0, len = sels.length; i < len; i++) {
                         var sel = sels[i].trim(); // Will accept only concatenated classes and last
                         // class might be with state (eg. :hover), nothing else.
@@ -43263,6 +43246,7 @@ function getUrlParameter(sParam) {
                          * @return {Array<Object>}
                          */
                         build: function build(props) {
+                            //debugger
                             var objs = [];
                             var dftFixedValues = ['initial', 'inherit'];
                             if (typeof props === 'string') props = [props];
@@ -43340,6 +43324,8 @@ function getUrlParameter(sParam) {
                                     case 'cursor':
                                     case 'overflow':
                                     case 'overflow-x':
+                                    case 'ui-events':
+                                    case 'ui-components':
                                     case 'overflow-y':
                                         obj.type = 'select';
                                         break;
@@ -43413,6 +43399,7 @@ function getUrlParameter(sParam) {
                                     case 'box-shadow':
                                     case 'background':
                                     case 'transition':
+                                    case 'dependency':
                                         obj.type = 'stack';
                                         break;
 
@@ -44027,6 +44014,24 @@ function getUrlParameter(sParam) {
                                             value: 'contain'
                                         }];
                                         break;
+                                    case 'ui-events':
+                                        obj.list = [{
+                                            value: 'click event'
+                                        }, {
+                                            value: 'mouseover'
+                                        }, {
+                                            value: 'mouseout'
+                                        }];
+                                        break;
+                                    case 'ui-components':
+                                        obj.list = [{
+                                            value: 'input field'
+                                        }, {
+                                            value: 'select'
+                                        }, {
+                                            value: 'radio'
+                                        }];
+                                        break;
 
                                     case 'transition-property':
                                         obj.list = [{
@@ -44130,6 +44135,9 @@ function getUrlParameter(sParam) {
                                     case 'transition':
                                         obj.properties = this.build(['transition-property', 'transition-duration', 'transition-timing-function']);
                                         break;
+                                    case 'dependency':
+                                        obj.properties = this.build(['ui-events', 'ui-components']);
+                                        break;
 
                                     case 'transform':
                                         obj.properties = this.build(['transform-rotate-x', 'transform-rotate-y', 'transform-rotate-z', 'transform-scale-x', 'transform-scale-y', 'transform-scale-z']);
@@ -44138,7 +44146,6 @@ function getUrlParameter(sParam) {
 
                                 objs.push(obj);
                             }
-
                             return objs;
                         }
                     };
@@ -44146,6 +44153,7 @@ function getUrlParameter(sParam) {
 
                 /***/
 }),
+
 
 /***/ "./src/style_manager/model/PropertyInteger.js":
 /*!****************************************************!*\
@@ -44477,6 +44485,7 @@ function getUrlParameter(sParam) {
                      * @private
                      */
                     extendProperties: function extendProperties(props, moProps, ex) {
+                        //debugger
                         var pLen = props.length;
                         var mProps = moProps || this.get('properties');
                         var ext = this.get('extendBuilded');
@@ -48306,6 +48315,7 @@ function getUrlParameter(sParam) {
                                 applyOptions();
                             });
                             draggable(alphaSlider, function (dragX, dragY, e) {
+                                //debugger
                                 currentAlpha = dragX / alphaWidth;
                                 isEmpty = false;
 
@@ -50855,6 +50865,7 @@ function getUrlParameter(sParam) {
                         }, {
                             key: "handleDragLeave",
                             value: function handleDragLeave(ev) {
+                                //debugger
                                 this.updateCounter(-1, ev);
                             }
                         }, {
@@ -50866,6 +50877,7 @@ function getUrlParameter(sParam) {
                         }, {
                             key: "handleDragEnter",
                             value: function handleDragEnter(ev) {
+                                // //debugger
                                 var _this = this;
 
                                 var em = this.em;
@@ -50966,6 +50978,17 @@ function getUrlParameter(sParam) {
                                 var em = this.em;
                                 em.set('dragResult', model);
                                 em.trigger('canvas:drop', dt, model);
+                                console.log(model.attributes.attributes.ty)
+                                if(model.attributes.attributes.ty!=='mesh' && model.attributes.attributes.ty!== 'meshcell'){
+                                    sendObj.type = model.attributes.tagName;
+                                    sendObj.id = model.view.el['id'];
+                                    var newList = sessionStorage.getItem("comp_list");
+                                    newList = JSON.parse(newList);
+                                    newList.push(sendObj);
+                                    sessionStorage.setItem("comp_list", JSON.stringify(newList));
+                                }
+                                // console.log("model----------", model.attributes.tagName)
+                                console.log(model.view.el['id']);
                             }
                             /**
                              * Always need to have this handler active for enabling the drop
@@ -50977,6 +51000,7 @@ function getUrlParameter(sParam) {
                             value: function handleDragOver(ev) {
                                 ev.preventDefault();
                                 this.em.trigger('canvas:dragover', ev);
+                                console.log(newId_)
                             }
                         }, {
                             key: "handleDrop",
@@ -50985,6 +51009,7 @@ function getUrlParameter(sParam) {
                                 var dragContent = this.dragContent;
                                 var dt = ev.dataTransfer;
                                 var content = this.getContentByData(dt).content;
+                                console.log(content)
                                 ev.target.style.border = '';
                                 content && dragContent && dragContent(content);
                                 this.endDrop(!content, ev);
@@ -53566,7 +53591,6 @@ function getUrlParameter(sParam) {
 
                 /***/
 })
-
         /******/
 })["default"];
 });
