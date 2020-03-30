@@ -25,10 +25,10 @@ if (tenant_id) {
         "data": JSON.stringify(sendObj)
     };
 
-    $.ajax(settings11).done(function (resp) {
-        console.log(resp);
-        window.parent.getCall(resp, queue_name)
-    })
+    // $.ajax(settings11).done(function (resp) {
+    //     console.log(resp);
+    //     window.parent.getCall(resp, queue_name)
+    // })
 }
 
 

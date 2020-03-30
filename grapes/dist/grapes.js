@@ -3554,6 +3554,7 @@ function getUrlParameter(sParam) {
                             }
                             var classes = getClasses(c);
                             return (classes ? this.each(function (v) {
+                                console.log(v)
                                 each(classes, function (c) {
                                     if (hasClass(v, c)) {
                                         removeClass(v, c);
@@ -15021,7 +15022,7 @@ function getUrlParameter(sParam) {
                             return {
                                 "if": kw("if"), "while": A, "with": A, "else": B, "do": B, "try": B, "finally": B,
                                 "return": D, "break": D, "continue": D, "new": kw("new"), "delete": C, "void": C, "throw": C,
-                                "//debugger": kw("//debugger"), "var": kw("var"), "const": kw("var"), "let": kw("var"),
+                                "debugger": kw("debugger"), "var": kw("var"), "const": kw("var"), "let": kw("var"),
                                 "function": kw("function"), "catch": kw("catch"),
                                 "for": kw("for"), "switch": kw("switch"), "case": kw("case"), "default": kw("default"),
                                 "in": operator, "typeof": operator, "instanceof": operator,
@@ -15351,7 +15352,7 @@ function getUrlParameter(sParam) {
                             if (type == "keyword a") return cont(pushlex("form"), parenExpr, statement, poplex);
                             if (type == "keyword b") return cont(pushlex("form"), statement, poplex);
                             if (type == "keyword d") return cx.stream.match(/^\s*$/, false) ? cont() : cont(pushlex("stat"), maybeexpression, expect(";"), poplex);
-                            if (type == "//debugger") return cont(expect(";"));
+                            if (type == "debugger") return cont(expect(";"));
                             if (type == "{") return cont(pushlex("}"), pushblockcontext, block, poplex, popcontext);
                             if (type == ";") return cont();
                             if (type == "if") {
@@ -16588,7 +16589,6 @@ function getUrlParameter(sParam) {
 
                     // abstract key logic for assign and unassign
                     function getKeys(key) {
-                        debugger
                         var keys;
                         key = key.replace(/\s/g, '');
                         keys = key.split(',');
@@ -21445,7 +21445,7 @@ function getUrlParameter(sParam) {
                      * @example
                      * styles: [ 'https://...1.css', 'https://...2.css' ]
                      */
-                    styles: ['js/css/bootstrap.css','js/css/styles.css'],
+                    styles: ['css/bootstrap.css','css/styles.css'],
 
                     /**
                      * Add custom badge naming strategy
@@ -28978,7 +28978,6 @@ function getUrlParameter(sParam) {
                          * wrapperChildren.remove(comp2);
                          */
                         getComponents: function getComponents() {
-                            //debugger
                             return this.getWrapper().get('components');
                             console.log(this.getWrapper().get('components'))
                         },
@@ -37919,7 +37918,6 @@ function getUrlParameter(sParam) {
                                 id: osm,
                                 className: 'fa fa-paint-brush',
                                 command: osm,
-                                active: true,
                                 togglable: 0,
                                 attributes: {
                                     title: 'Open Style Manager'
@@ -39076,7 +39074,6 @@ function getUrlParameter(sParam) {
                     var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
                     var add = [];
                     var result = [];
-                    debugger
                     var sels = str.split(',');
                     
                     for (var i = 0, len = sels.length; i < len; i++) {
@@ -44016,7 +44013,7 @@ function getUrlParameter(sParam) {
                                         break;
                                     case 'ui-events':
                                         obj.list = [{
-                                            value: 'click event'
+                                            value: 'click_event'
                                         }, {
                                             value: 'mouseover'
                                         }, {
@@ -44025,14 +44022,14 @@ function getUrlParameter(sParam) {
                                         break;
                                     case 'ui-components':
                                         obj.list = [{
-                                            value: 'input field'
+                                            value: 'input_field'
                                         }, {
                                             value: 'select'
                                         }, {
                                             value: 'radio'
                                         }];
                                         break;
-
+                                        
                                     case 'transition-property':
                                         obj.list = [{
                                             value: 'all'

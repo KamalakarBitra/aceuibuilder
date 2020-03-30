@@ -4646,13 +4646,14 @@ span.CodeMirror-selectedtext {
 .gjs-cv-canvas {
     background-color: rgba(0, 0, 0, 0.15);
     box-sizing: border-box;
-    width: calc(100% - 31%);
+    /* width: calc(100% - 31%); */
+    width: 80%;
     height: calc(100% - 40px);
     bottom: 0;
     overflow: hidden;
     z-index: 1;
     position: absolute;
-    left: 15%;
+    left:20%;
     top: 40px;
 
 }
@@ -4661,7 +4662,7 @@ span.CodeMirror-selectedtext {
     position: absolute;
     left: 0px;
     height: 93%;
-    width: 15%;
+    width: 20%;
     z-index: 9;
     top: 40px;
     overflow-x: auto;

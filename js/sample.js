@@ -447,14 +447,14 @@ blocks = [
 	},
 	{
 		id: 21,
-		label: 'Queue',
+		label: 'Queue List',
 		category: 'fields',
 		content: {
 			tagName: "div",
 			components: "Queue List",
 			attributes: {
 				readonly: 'readonly',
-				ty: 'queue',
+				ty: 'queue_list',
 				property:'absolute'
 			},
 			resizable: {
@@ -475,81 +475,27 @@ blocks = [
 	},
 ]
 
+
+
+
+
+
+
 properties = [
 	{
 		id: 'prop1',
 		prop: [
 			{
-				// text:'text',
-				type: 'display_name',
+				type: 'text',
 				name: 'display_name',
 				label: 'Display Name',
 				changeProp: 0,
-				// command: editor =>dosomething(this),
-				// attributes: {style: 'display: none'}
 			},
 			{
-				property: 'transition',
-				type: 'stack',
-				properties: [
-				  {
-					property: 'transition-property',
-					type: 'select',
-					defaults: 'width',
-					list: [
-					  { value: 'all' },
-					  { value: 'width' },
-					  { value: 'height' },
-					  { value: 'background-color' },
-					  { value: 'transform' },
-					  { value: 'box-shadow' },
-					  { value: 'opacity' }
-					]
-				  },
-				  {
-					property: 'transition-duration',
-					type: 'integer',
-					units: ['s'],
-					defaults: '2',
-					min: 0
-				  },
-				  {
-					property: 'transition-timing-function',
-					type: 'select',
-					defaults: 'ease',
-					list: [
-					  { value: 'linear' },
-					  { value: 'ease' },
-					  { value: 'ease-in' },
-					  { value: 'ease-out' },
-					  { value: 'ease-in-out' }
-					]
-				  }
-				]
-			  },
-			{
-				
 				type: 'text',
 				name: 'unique_name',
 				label: 'Unique Name',
 				command:'somecommand'
-			},
-
-			{
-				type: 'checkbox',
-				name: 'outline',
-				label: 'Outline'
-			},
-
-			{
-				type: 'checkbox',
-				name: 'mandatory',
-				label: 'Mandatory'
-			},
-			{
-				type: 'checkbox',
-				name: 'editable',
-				label: 'Editable'
 			},
 			{
 				type: 'select',
@@ -558,67 +504,10 @@ properties = [
 				options: [
 					'Text', 'Email', 'Password', 'Number', 'hello'
 				],
-			},
-			{
-				type: 'checkbox',
-				name: 'is_dropdown',
-				label: 'Dropdown'
-			},
-			
-			{
-				type: 'select',
-				label: 'Data Type',
-				name: 'data_type',
-				options: [
-					'Text', 'Email', 'Password', 'Number', 'hello'
-				]
-			},
-			{
-				type: 'number',
-				name: 'min_length',
-				label: 'Min Length'
-			},
-			{
-				type: 'number',
-				name: 'max_length',
-				label: 'Max Length'
-			},
-			{
-				type: 'text',
-				name: 'pattern',
-				label: 'Pattern'
-			},
-			{
-				type: 'number',
-				name: 'max_date',
-				label: 'Max Date'
-			},
-			{
-				type: 'number',
-				name: 'confidence_threshold',
-				label: 'Confidence Threshold'
-			},
-			{
-				type: 'checkbox',
-				name: 'Consider field for export',
-				label: 'Consider field for export',
-
-			},
-			{
-				type: 'button',
-				text: 'Add Rule',
-				value: 'rule',
-				command : editor => addRuleModal("rule")
 			}
 		]
 	},
 ]
-
-
-
-
-
-
 
 
 

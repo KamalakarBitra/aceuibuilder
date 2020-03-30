@@ -1,6 +1,6 @@
 dynamicUrl = 'http://54.197.10.114:5002'
 
-
+var properties
 var tempHtml
 var queue_name = getUrlParameter("queue_name");
 var tenant_id = getUrlParameter('tenant_id');
@@ -37,19 +37,26 @@ var editor = grapesjs.init({
 
 console.log("-----------------------------------------------");
 var new_dropped_id;
-editor.on('storage:store', function(e) {
-    var newData = JSON.parse(e.styles)
-    var droppedId = sessionStorage.getItem('comp_list')
-    droppedId = JSON.parse(droppedId)
-    console.log(newData)
-    console.log(droppedId);
-    for (let i = 0; i < droppedId.length; i++) {
-        new_dropped_id = droppedId[i].id;
-        console.log(new_dropped_id)
-    }
-    debugger
-    // let index = newData.findIndex(x => x === new_dropped_id)
-    // console.log(newData['selectors'][0])
+editor.on('component:selected', function(e) {
+    var selected_id = e.ccid
+    // $(".property-view-box").hide()
+    // if ($(".property-view-box-"+selected_id).length == 0) {
+    //     let index = properties.findIndex(x => x.id === e.attributes.type);
+    //     var newProperties = properties[index].prop;
+    //     var view = '<div class="property-view-box property-view-box-'+selected_id+'">'
+    //     for (let i = 0; i < newProperties.length; i++) {
+    //         const element = newProperties[i];
+    //         console.log(element);
+    //         view+=getFields(element, selected_id)
+    //     }
+    //     view += '</div>'
+    //     $('.property-box').append(view)
+    // }
+    // else {
+    //     $(".property-view-box-"+selected_id).show()
+    // }
+    sessionStorage.setItem('selected_component', JSON.stringify(e));
+    window.parent.$('#openPpanel').click();
 });
 console.log("-----------------------------------------------");
 
@@ -114,22 +121,23 @@ function sampleClick(comps) {
             "data": JSON.stringify(sendObj)
         };
 
-        $.ajax(settings11).done(function (resp) {
-            console.log(resp);
-            if(resp.flag==true){
-                $.alert({
-                    title: 'Alert!',
-                    content: resp.message,
-                });
+        // $.ajax(settings11).done(function (resp) {
+        //     console.log(resp);
+        //     if(resp.flag==true){
+        //         $.alert({
+        //             title: 'Alert!',
+        //             content: resp.message,
+        //         });
 
-            }
-        })
+        //     }
+        // })
     }, 2000);
 }
 
 allProperties = properties
 
 function convertor(_input, output) {
+    debugger
     if ($.type(_input) == "object") {
         temp_obj = Object.assign({}, _input)
         // delete temp_obj['components'];
@@ -152,17 +160,22 @@ function convertor(_input, output) {
         temp_obj.attributes.parent_id = parent_id
         console.log(temp_obj)
         temp_obj.props = []
-        if (temp_obj.type) {
-            prop_idx = allProperties.findIndex(x => x.id = temp_obj.type);
-            if (prop_idx > -1) {
-                prop_ele = allProperties[prop_idx].prop
-                for (let i = 0; i < prop_ele.length; i++) {
-                    vl = temp_obj.attributes[prop_ele[i].name] ? temp_obj.attributes[prop_ele[i].name] : ""
-                    prop_ele[i].back.attribute_value = vl;
-                    temp_obj.props.push(prop_ele[i].back);
+        // if (temp_obj.attributes['ty']!=='mesh' && temp_obj.attributes['ty']!=='meshcell') {
+            var newId = temp_obj.attributes.id;
+            if (temp_obj.type) {
+                prop_idx = allProperties.findIndex(x => x.id = temp_obj.type);
+                if (prop_idx > -1) {
+                    prop_ele = allProperties[prop_idx].prop
+                    for (let i = 0; i < prop_ele.length; i++) {
+                        var vall = temp_obj[newId][prop_ele[i].name]
+                        vl = temp_obj.attributes[prop_ele[i].name] ? temp_obj.attributes[prop_ele[i].name] : ""
+                        // prop_ele[i].back.attribute_value = vl;
+                        // temp_obj.props.push(prop_ele[i].back);
+                    }
                 }
             }
-        }
+
+        // }
         
         temp_obj.props.push({ attribute_master_name: 'width', attribute_value: width })
         temp_obj.props.push({ attribute_master_name: 'height', attribute_value: height })
@@ -557,7 +570,7 @@ for (i = 0; i < blocks.length; i++) {
     editor.BlockManager.add(block.id, {
 
         label:`<div>
-            <img src="js/Updated Icons/`+block.image+`" style="width: 30px; height: 50px;"/ >
+            <img src="Images/Updated Icons/`+block.image+`" style="width: 30px; height: 50px;"/ >
             <div class="my-label-block">`+block.label+`</div>
         </div>`,
         category: block.category,
@@ -730,7 +743,18 @@ function addRuleModal(rule){
     window.parent.$('#openSCBiz').click();
  }
 
- $('body').on('drop', '[ty=table]', function(){
-     console.log('shehnaz')
- })
+function getFields(field_obj, id){
+    var tr = ''
+    if(field_obj.type == 'text'){
+        tr+= '<div class="row sub-box">'
+        tr+= '<div class="col-sm-12">'
+        tr+= '<h5 class="label">'+field_obj.label+':</h5>'
+        tr+= '</div>'
+        tr+= '<div class="col-sm-12">'
+        tr+= '<input type="text" placeholder="" class="input_class input_class_'+id+'_'+field_obj.name+'">'
+        tr+= '</div>'
+        tr+= '</div>'
+    }
 
+    return tr;
+}
