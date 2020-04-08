@@ -89,7 +89,8 @@ editor.on('component:styleUpdate', (some, argument) => {
 
 function sampleClick(comps) {
     output = [];
-    convertor(JSON.parse(comps), output)
+    sizeObj = {}
+    convertor(JSON.parse(comps), output, sizeObj)
     
     setTimeout(() => {
         console.log(output);
@@ -108,6 +109,7 @@ function sampleClick(comps) {
         sendObj.template = JSON.stringify(tem_obj)
         sendObj.tenant_id = tenant_id
         sendObj.template_type = 'layout'
+        sendObj.sizes = sizeObj
 
         console.log(sendObj);
 
@@ -136,8 +138,7 @@ function sampleClick(comps) {
 
 allProperties = properties
 
-function convertor(_input, output) {
-    debugger
+function convertor(_input, output, sizeObj) {
     if ($.type(_input) == "object") {
         temp_obj = Object.assign({}, _input)
         // delete temp_obj['components'];
@@ -161,33 +162,33 @@ function convertor(_input, output) {
         console.log(temp_obj)
         temp_obj.props = []
         // if (temp_obj.attributes['ty']!=='mesh' && temp_obj.attributes['ty']!=='meshcell') {
-            var newId = temp_obj.attributes.id;
-            if (temp_obj.type) {
-                prop_idx = allProperties.findIndex(x => x.id = temp_obj.type);
-                if (prop_idx > -1) {
-                    prop_ele = allProperties[prop_idx].prop
-                    for (let i = 0; i < prop_ele.length; i++) {
-                        var vall = temp_obj[newId][prop_ele[i].name]
-                        vl = temp_obj.attributes[prop_ele[i].name] ? temp_obj.attributes[prop_ele[i].name] : ""
-                        // prop_ele[i].back.attribute_value = vl;
-                        // temp_obj.props.push(prop_ele[i].back);
-                    }
-                }
-            }
+            // var newId = temp_obj.attributes.id;
+            // if (temp_obj.type) {
+            //     prop_idx = allProperties.findIndex(x => x.id = temp_obj.type);
+            //     if (prop_idx > -1) {
+            //         prop_ele = allProperties[prop_idx].prop
+            //         for (let i = 0; i < prop_ele.length; i++) {
+            //             var vall = temp_obj[newId][prop_ele[i].name]
+            //             vl = temp_obj.attributes[prop_ele[i].name] ? temp_obj.attributes[prop_ele[i].name] : ""
+            //             // prop_ele[i].back.attribute_value = vl;
+            //             // temp_obj.props.push(prop_ele[i].back);
+            //         }
+            //     }
+            // }
 
         // }
-        
-        temp_obj.props.push({ attribute_master_name: 'width', attribute_value: width })
-        temp_obj.props.push({ attribute_master_name: 'height', attribute_value: height })
+        sizeObj[get_id] = {}
+        sizeObj[get_id].width = width
+        sizeObj[get_id].height = height
         output.push(temp_obj)
     }
     if ($.type(_input) == "array") {
         for (var i = 0; i < _input.length; i++) {
-            output = convertor(_input[i], output)
+            output = convertor(_input[i], output, sizeObj)
         }
     }
     else if ($.type(_input) == "object" && "components" in _input) {
-        output = convertor(_input["components"], output)
+        output = convertor(_input["components"], output, sizeObj)
     }
     return output
 }
@@ -563,7 +564,6 @@ for (i = 0; i < properties.length; i++) {
         },
 
     });
-
 }
 for (i = 0; i < blocks.length; i++) {
     block = blocks[i];
