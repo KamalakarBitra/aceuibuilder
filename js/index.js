@@ -92,34 +92,35 @@ function sampleClick(comps) {
     convertor(JSON.parse(comps), output)
     
     setTimeout(() => {
-        console.log(output);
-        tem_obj = {}
-        tem_obj[queue_name] = {
-            'jsonTsampleClickemplate': editor.getComponents(),
-            'htmlTemplate': $("#add-custom-id").contents().find('#wrapper').html() + '' + $("#add-custom-id").contents().find(".gjs-css-rules").html() + '' + $("#add-custom-id").contents().find(".gjs-js-cont").html()
-        }
+        localStorage.setItem('mesh_object', JSON.stringify(output[0]));
+        window.parent.$("#saveScreen").click();
+        // tem_obj = {}
+        // tem_obj[queue_name] = {
+        //     'jsonTsampleClickemplate': editor.getComponents(),
+        //     'htmlTemplate': $("#add-custom-id").contents().find('#wrapper').html() + '' + $("#add-custom-id").contents().find(".gjs-css-rules").html() + '' + $("#add-custom-id").contents().find(".gjs-js-cont").html()
+        // }
 
-        sendObj = {
-            flag: 'save_layout',
-        }
-        sendObj.classification = 'Layout'
-        sendObj.data = output;
-        sendObj.queueid = queue_name
-        sendObj.template = JSON.stringify(tem_obj)
-        sendObj.tenant_id = tenant_id
-        sendObj.template_type = 'layout'
+        // sendObj = {
+        //     flag: 'save_layout',
+        // }
+        // sendObj.classification = 'Layout'
+        // sendObj.data = output;
+        // sendObj.queueid = queue_name
+        // sendObj.template = JSON.stringify(tem_obj)
+        // sendObj.tenant_id = tenant_id
+        // sendObj.template_type = 'layout'
 
-        console.log(sendObj);
+        // console.log(sendObj);
 
-        var settings11 = {
-            "async": true,
-            "crossDomain": true,
-            "url": dynamicUrl + "/builder_components",
-            "method": "POST",
-            "processData": false,
-            "contentType": "application/json",
-            "data": JSON.stringify(sendObj)
-        };
+        // var settings11 = {
+        //     "async": true,
+        //     "crossDomain": true,
+        //     "url": dynamicUrl + "/builder_components",
+        //     "method": "POST",
+        //     "processData": false,
+        //     "contentType": "application/json",
+        //     "data": JSON.stringify(sendObj)
+        // };
 
         // $.ajax(settings11).done(function (resp) {
         //     console.log(resp);
@@ -137,7 +138,6 @@ function sampleClick(comps) {
 allProperties = properties
 
 function convertor(_input, output) {
-    debugger
     if ($.type(_input) == "object") {
         temp_obj = Object.assign({}, _input)
         // delete temp_obj['components'];
@@ -161,19 +161,19 @@ function convertor(_input, output) {
         console.log(temp_obj)
         temp_obj.props = []
         // if (temp_obj.attributes['ty']!=='mesh' && temp_obj.attributes['ty']!=='meshcell') {
-            var newId = temp_obj.attributes.id;
-            if (temp_obj.type) {
-                prop_idx = allProperties.findIndex(x => x.id = temp_obj.type);
-                if (prop_idx > -1) {
-                    prop_ele = allProperties[prop_idx].prop
-                    for (let i = 0; i < prop_ele.length; i++) {
-                        var vall = temp_obj[newId][prop_ele[i].name]
-                        vl = temp_obj.attributes[prop_ele[i].name] ? temp_obj.attributes[prop_ele[i].name] : ""
-                        // prop_ele[i].back.attribute_value = vl;
-                        // temp_obj.props.push(prop_ele[i].back);
-                    }
-                }
-            }
+            // var newId = temp_obj.attributes.id;
+            // if (temp_obj.type) {
+            //     prop_idx = allProperties.findIndex(x => x.id = temp_obj.type);
+            //     if (prop_idx > -1) {
+            //         prop_ele = allProperties[prop_idx].prop
+            //         for (let i = 0; i < prop_ele.length; i++) {
+            //             var vall = temp_obj[newId][prop_ele[i].name]
+            //             vl = temp_obj.attributes[prop_ele[i].name] ? temp_obj.attributes[prop_ele[i].name] : ""
+            //             // prop_ele[i].back.attribute_value = vl;
+            //             // temp_obj.props.push(prop_ele[i].back);
+            //         }
+            //     }
+            // }
 
         // }
         
@@ -189,6 +189,8 @@ function convertor(_input, output) {
     else if ($.type(_input) == "object" && "components" in _input) {
         output = convertor(_input["components"], output)
     }
+
+    
     return output
 }
 
@@ -306,14 +308,18 @@ function generateProperties(properties) {
         });
     }
 
+    
     if(tempHtml == '') {
         editor.setComponents('<div class="row" ty="mesh"><div style="width:12.5%;height:110px" ty="meshcell" m_count="1_1"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="1_2"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="1_3"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="1_4"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="1_5"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="1_6"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="1_7"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="1_8"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="2_1"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="2_2"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="2_3"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="2_4"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="2_5"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="2_6"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="2_7"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="2_8"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="3_1"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="3_2"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="3_3"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="3_4"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="3_5"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="3_6"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="3_7"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="3_8"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="4_1"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="4_2"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="4_3"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="4_4"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="4_5"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="4_6"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="4_7"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="4_8"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="5_1"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="5_2"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="5_3"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="5_4"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="5_5"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="5_6"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="5_7"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="5_8"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="6_1"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="6_2"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="6_3"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="6_4"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="6_5"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="6_6"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="6_7"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="6_8"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="7_1"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="7_2"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="7_3"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="7_4"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="7_5"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="7_6"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="7_7"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="7_8"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="8_1"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="8_2"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="8_3"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="8_4"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="8_5"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="8_6"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="8_7"></div><div style="width:12.5%;height:110px" ty="meshcell" m_count="8_8"></div></div>')
     }
     else {
         editor.setComponents(tempHtml)
     }
-
+    
 }
+
+tempHtml = '<div ty="mesh"><div ty="meshcell" m_count="1_1" id="Sample_meshcell_1_1"></div><div ty="meshcell" m_count="1_2" id="Sample_meshcell_1_2"></div><div ty="meshcell" m_count="1_3" id="Sample_meshcell_1_3"></div><div ty="meshcell" m_count="1_4" id="Sample_meshcell_1_4"></div><div ty="meshcell" m_count="1_5" id="Sample_meshcell_1_5"></div><div ty="meshcell" m_count="1_6" id="Sample_meshcell_1_6"></div><div ty="meshcell" m_count="1_7" id="Sample_meshcell_1_7"></div><div ty="meshcell" m_count="1_8" id="Sample_meshcell_1_8"></div><div ty="meshcell" m_count="2_1" id="Sample_meshcell_2_1"></div><div ty="meshcell" m_count="2_2" id="Sample_meshcell_2_2"><div ty="tabs" data-tabs="1" id="Sample_tabs_66"><nav ty="tabs" data-tab-container="1" class="tab-container"><a href="#tab1" data-tab="1" ty="tabs" class="tab">Tab 1</a><a href="#tab2" data-tab="1" ty="tabs" class="tab">Tab 2</a><a href="#tab3" data-tab="1" ty="tabs" class="tab">Tab 3</a></nav><div ty="tabs" id="tab1" data-tab-content="1" class="tab-content"><div ty="tabs"></div><input type="text" required readonly="readonly" ty="input" property="absolute" id="Sample_input_77"/></div><div ty="tabs" id="tab2" data-tab-content="1" class="tab-content"><div ty="tabs"></div></div><div ty="tabs" id="tab3" data-tab-content="1" class="tab-content"><div ty="tabs"></div></div></div></div><div ty="meshcell" m_count="2_3" id="Sample_meshcell_2_3"></div><div ty="meshcell" m_count="2_4" id="Sample_meshcell_2_4"></div><div ty="meshcell" m_count="2_5" id="Sample_meshcell_2_5"></div><div ty="meshcell" m_count="2_6" id="Sample_meshcell_2_6"></div><div ty="meshcell" m_count="2_7" id="Sample_meshcell_2_7"></div><div ty="meshcell" m_count="2_8" id="Sample_meshcell_2_8"></div><div ty="meshcell" m_count="3_1" id="Sample_meshcell_3_1"></div><div ty="meshcell" m_count="3_2" id="Sample_meshcell_3_2"></div><div ty="meshcell" m_count="3_3" id="Sample_meshcell_3_3"></div><div ty="meshcell" m_count="3_4" id="Sample_meshcell_3_4"></div><div ty="meshcell" m_count="3_5" id="Sample_meshcell_3_5"></div><div ty="meshcell" m_count="3_6" id="Sample_meshcell_3_6"></div><div ty="meshcell" m_count="3_7" id="Sample_meshcell_3_7"></div><div ty="meshcell" m_count="3_8" id="Sample_meshcell_3_8"></div><div ty="meshcell" m_count="4_1" id="Sample_meshcell_4_1"></div><div ty="meshcell" m_count="4_2" id="Sample_meshcell_4_2"></div><div ty="meshcell" m_count="4_3" id="Sample_meshcell_4_3"></div><div ty="meshcell" m_count="4_4" id="Sample_meshcell_4_4"></div><div ty="meshcell" m_count="4_5" id="Sample_meshcell_4_5"></div><div ty="meshcell" m_count="4_6" id="Sample_meshcell_4_6"></div><div ty="meshcell" m_count="4_7" id="Sample_meshcell_4_7"></div><div ty="meshcell" m_count="4_8" id="Sample_meshcell_4_8"></div><div ty="meshcell" m_count="5_1" id="Sample_meshcell_5_1"></div><div ty="meshcell" m_count="5_2" id="Sample_meshcell_5_2"></div><div ty="meshcell" m_count="5_3" id="Sample_meshcell_5_3"></div><div ty="meshcell" m_count="5_4" id="Sample_meshcell_5_4"></div><div ty="meshcell" m_count="5_5" id="Sample_meshcell_5_5"></div><div ty="meshcell" m_count="5_6" id="Sample_meshcell_5_6"></div><div ty="meshcell" m_count="5_7" id="Sample_meshcell_5_7"></div><div ty="meshcell" m_count="5_8" id="Sample_meshcell_5_8"></div><div ty="meshcell" m_count="6_1" id="Sample_meshcell_6_1"></div><div ty="meshcell" m_count="6_2" id="Sample_meshcell_6_2"></div><div ty="meshcell" m_count="6_3" id="Sample_meshcell_6_3"></div><div ty="meshcell" m_count="6_4" id="Sample_meshcell_6_4"></div><div ty="meshcell" m_count="6_5" id="Sample_meshcell_6_5"></div><div ty="meshcell" m_count="6_6" id="Sample_meshcell_6_6"></div><div ty="meshcell" m_count="6_7" id="Sample_meshcell_6_7"></div><div ty="meshcell" m_count="6_8" id="Sample_meshcell_6_8"></div><div ty="meshcell" m_count="7_1" id="Sample_meshcell_7_1"></div><div ty="meshcell" m_count="7_2" id="Sample_meshcell_7_2"></div><div ty="meshcell" m_count="7_3" id="Sample_meshcell_7_3"></div><div ty="meshcell" m_count="7_4" id="Sample_meshcell_7_4"></div><div ty="meshcell" m_count="7_5" id="Sample_meshcell_7_5"></div><div ty="meshcell" m_count="7_6" id="Sample_meshcell_7_6"></div><div ty="meshcell" m_count="7_7" id="Sample_meshcell_7_7"></div><div ty="meshcell" m_count="7_8" id="Sample_meshcell_7_8"></div><div ty="meshcell" m_count="8_1" id="Sample_meshcell_8_1"></div><div ty="meshcell" m_count="8_2" id="Sample_meshcell_8_2"></div><div ty="meshcell" m_count="8_3" id="Sample_meshcell_8_3"></div><div ty="meshcell" m_count="8_4" id="Sample_meshcell_8_4"></div><div ty="meshcell" m_count="8_5" id="Sample_meshcell_8_5"></div><div ty="meshcell" m_count="8_6" id="Sample_meshcell_8_6"></div><div ty="meshcell" m_count="8_7" id="Sample_meshcell_8_7"></div><div ty="meshcell" m_count="8_8" id="Sample_meshcell_8_8"></div></div><script>var items = document.querySelectorAll("#Sample_tabs_66");for (var i = 0, len = items.length; i < len; i++) {(function(){var t, e = this,n = "[data-tab]",r = document.body,o = r.matchesSelector || r.webkitMatchesSelector || r.mozMatchesSelector || r.msMatchesSelector,a = function(r) {var o = e.querySelectorAll(n) || [];for (t = 0; t < o.length; t++) {var a = o[t],i = a.className.replace("tab-active", "").trim();a.className = i}! function() {var n = e.querySelectorAll("[data-tab-content]") || [];for (t = 0; t < n.length; t++) n[t].style.display = "none"}(), r.className += " tab-active";var c = r.getAttribute("href"),s = e.querySelector(c);s && (s.style.display = "")},i = e.querySelector(".tab-active" + n);(i = i || e.querySelector(n)) && a(i), e.addEventListener("click", (function(t) {var e = t.target;o.call(e, n) && a(e)}))}.bind(items[i]))();}</script><style>* { box-sizing: border-box; } body {margin: 0;}#Sample_meshcell_1_1{width:12.5%;height:110px;}#Sample_meshcell_1_2{width:12.5%;height:110px;}#Sample_meshcell_1_3{width:12.5%;height:110px;}#Sample_meshcell_1_4{width:12.5%;height:110px;}#Sample_meshcell_1_5{width:12.5%;height:110px;}#Sample_meshcell_1_6{width:12.5%;height:110px;}#Sample_meshcell_1_7{width:12.5%;height:110px;}#Sample_meshcell_1_8{width:12.5%;height:110px;}#Sample_meshcell_2_1{width:12.5%;height:110px;}#Sample_meshcell_2_2{width:12.5%;height:110px;}#Sample_meshcell_2_3{width:12.5%;height:110px;}#Sample_meshcell_2_4{width:12.5%;height:110px;}#Sample_meshcell_2_5{width:12.5%;height:110px;}#Sample_meshcell_2_6{width:12.5%;height:110px;}#Sample_meshcell_2_7{width:12.5%;height:110px;}#Sample_meshcell_2_8{width:12.5%;height:110px;}#Sample_meshcell_3_1{width:12.5%;height:110px;}#Sample_meshcell_3_2{width:12.5%;height:110px;}#Sample_meshcell_3_3{width:12.5%;height:110px;}#Sample_meshcell_3_4{width:12.5%;height:110px;}#Sample_meshcell_3_5{width:12.5%;height:110px;}#Sample_meshcell_3_6{width:12.5%;height:110px;}#Sample_meshcell_3_7{width:12.5%;height:110px;}#Sample_meshcell_3_8{width:12.5%;height:110px;}#Sample_meshcell_4_1{width:12.5%;height:110px;}#Sample_meshcell_4_2{width:12.5%;height:110px;}#Sample_meshcell_4_3{width:12.5%;height:110px;}#Sample_meshcell_4_4{width:12.5%;height:110px;}#Sample_meshcell_4_5{width:12.5%;height:110px;}#Sample_meshcell_4_6{width:12.5%;height:110px;}#Sample_meshcell_4_7{width:12.5%;height:110px;}#Sample_meshcell_4_8{width:12.5%;height:110px;}#Sample_meshcell_5_1{width:12.5%;height:110px;}#Sample_meshcell_5_2{width:12.5%;height:110px;}#Sample_meshcell_5_3{width:12.5%;height:110px;}#Sample_meshcell_5_4{width:12.5%;height:110px;}#Sample_meshcell_5_5{width:12.5%;height:110px;}#Sample_meshcell_5_6{width:12.5%;height:110px;}#Sample_meshcell_5_7{width:12.5%;height:110px;}#Sample_meshcell_5_8{width:12.5%;height:110px;}#Sample_meshcell_6_1{width:12.5%;height:110px;}#Sample_meshcell_6_2{width:12.5%;height:110px;}#Sample_meshcell_6_3{width:12.5%;height:110px;}#Sample_meshcell_6_4{width:12.5%;height:110px;}#Sample_meshcell_6_5{width:12.5%;height:110px;}#Sample_meshcell_6_6{width:12.5%;height:110px;}#Sample_meshcell_6_7{width:12.5%;height:110px;}#Sample_meshcell_6_8{width:12.5%;height:110px;}#Sample_meshcell_7_1{width:12.5%;height:110px;}#Sample_meshcell_7_2{width:12.5%;height:110px;}#Sample_meshcell_7_3{width:12.5%;height:110px;}#Sample_meshcell_7_4{width:12.5%;height:110px;}#Sample_meshcell_7_5{width:12.5%;height:110px;}#Sample_meshcell_7_6{width:12.5%;height:110px;}#Sample_meshcell_7_7{width:12.5%;height:110px;}#Sample_meshcell_7_8{width:12.5%;height:110px;}#Sample_meshcell_8_1{width:12.5%;height:110px;}#Sample_meshcell_8_2{width:12.5%;height:110px;}#Sample_meshcell_8_3{width:12.5%;height:110px;}#Sample_meshcell_8_4{width:12.5%;height:110px;}#Sample_meshcell_8_5{width:12.5%;height:110px;}#Sample_meshcell_8_6{width:12.5%;height:110px;}#Sample_meshcell_8_7{width:12.5%;height:110px;}#Sample_meshcell_8_8{width:12.5%;height:110px;}.tab{text-decoration-line:none;text-decoration-style:initial;text-decoration-color:initial;color:inherit;padding-top:7px;padding-right:14px;padding-bottom:7px;padding-left:14px;transition-duration:0.3s;transition-timing-function:ease;transition-delay:0s;transition-property:opacity;display:inline-block;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;margin-right:10px;}.tab.tab-active{background-color:rgb(13, 148, 230);color:white;}.tab-content{position:absolute;min-height:100px;animation-duration:1s;animation-timing-function:ease;animation-delay:0s;animation-iteration-count:1;animation-direction:normal;animation-fill-mode:none;animation-play-state:running;animation-name:fadeEffect;}#Sample_input_77{width:100%;}@keyframes fadeEffect{0%{opacity:0;}100%{opacity:1;}}</style>';
+editor.setComponents(tempHtml)
 
 editor.DomComponents.addType('tab-content', {
     model: {

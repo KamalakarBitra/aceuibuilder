@@ -383,6 +383,34 @@ blocks = [
 		image: "Image.svg",
 	},
 	{
+		id: 14,
+		label: 'Email',
+		category: 'components',
+		content: {
+			tagName: "div",
+			components: "email",
+			attributes: {
+				readonly: 'readonly',
+				ty: 'email_microApp',
+				property:'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type: 'prop1',
+			style: {
+				width: '100%'
+			}
+
+		},
+		image: "mail.svg",
+		type:'plus'
+	},
+	{
 		id: 17,
 		label: 'app mesh',
 		category: 'Layouts',
