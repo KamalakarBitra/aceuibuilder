@@ -89,7 +89,8 @@ editor.on('component:styleUpdate', (some, argument) => {
 
 function sampleClick(comps) {
     output = [];
-    convertor(JSON.parse(comps), output)
+    sizeObj = {}
+    convertor(JSON.parse(comps), output, sizeObj)
     
     setTimeout(() => {
         localStorage.setItem('mesh_object', JSON.stringify(output[0]));
@@ -100,27 +101,28 @@ function sampleClick(comps) {
         //     'htmlTemplate': $("#add-custom-id").contents().find('#wrapper').html() + '' + $("#add-custom-id").contents().find(".gjs-css-rules").html() + '' + $("#add-custom-id").contents().find(".gjs-js-cont").html()
         // }
 
-        // sendObj = {
-        //     flag: 'save_layout',
-        // }
-        // sendObj.classification = 'Layout'
-        // sendObj.data = output;
-        // sendObj.queueid = queue_name
-        // sendObj.template = JSON.stringify(tem_obj)
-        // sendObj.tenant_id = tenant_id
-        // sendObj.template_type = 'layout'
+        sendObj = {
+            flag: 'save_layout',
+        }
+        sendObj.classification = 'Layout'
+        sendObj.data = output;
+        sendObj.queueid = queue_name
+        sendObj.template = JSON.stringify(tem_obj)
+        sendObj.tenant_id = tenant_id
+        sendObj.template_type = 'layout'
+        sendObj.sizes = sizeObj
 
-        // console.log(sendObj);
+        console.log(sendObj);
 
-        // var settings11 = {
-        //     "async": true,
-        //     "crossDomain": true,
-        //     "url": dynamicUrl + "/builder_components",
-        //     "method": "POST",
-        //     "processData": false,
-        //     "contentType": "application/json",
-        //     "data": JSON.stringify(sendObj)
-        // };
+        var settings11 = {
+            "async": true,
+            "crossDomain": true,
+            "url": dynamicUrl + "/builder_components",
+            "method": "POST",
+            "processData": false,
+            "contentType": "application/json",
+            "data": JSON.stringify(sendObj)
+        };
 
         // $.ajax(settings11).done(function (resp) {
         //     console.log(resp);
@@ -137,7 +139,7 @@ function sampleClick(comps) {
 
 allProperties = properties
 
-function convertor(_input, output) {
+function convertor(_input, output, sizeObj) {
     if ($.type(_input) == "object") {
         temp_obj = Object.assign({}, _input)
         // delete temp_obj['components'];
@@ -176,18 +178,18 @@ function convertor(_input, output) {
             // }
 
         // }
-        
-        temp_obj.props.push({ attribute_master_name: 'width', attribute_value: width })
-        temp_obj.props.push({ attribute_master_name: 'height', attribute_value: height })
+        sizeObj[get_id] = {}
+        sizeObj[get_id].width = width
+        sizeObj[get_id].height = height
         output.push(temp_obj)
     }
     if ($.type(_input) == "array") {
         for (var i = 0; i < _input.length; i++) {
-            output = convertor(_input[i], output)
+            output = convertor(_input[i], output, sizeObj)
         }
     }
     else if ($.type(_input) == "object" && "components" in _input) {
-        output = convertor(_input["components"], output)
+        output = convertor(_input["components"], output, sizeObj)
     }
 
     
@@ -569,7 +571,6 @@ for (i = 0; i < properties.length; i++) {
         },
 
     });
-
 }
 for (i = 0; i < blocks.length; i++) {
     block = blocks[i];
