@@ -199,7 +199,7 @@ li {
   height: 110px !important;
 }
 
-[ty="tabs"] * {
+[ty="multi_component_tab"] * {
   position: initial !important;
 }
 
@@ -237,7 +237,7 @@ top: 2px;
 left: 2px;
 border-radius: 50%;
   }
-   [data-gjs-type="tabs"]{
+   [data-gjs-type="multi_component_tab"] {
     width: 300px;
   }
 nav{
@@ -295,3 +295,20 @@ nav{
   display: none !important;
 }
 .gjs-pn-commands{display: none;}
+
+[ty="multi_component_tab"],
+[ty="columns_component"] {
+  padding: 10px;
+}
+
+[ty="buttons_grid"] {
+  padding: 10px;
+  min-width: 200px;
+  min-height: 60px;
+}
+
+[ty="queue_list"] {
+  background-image: url(../images/designs/queue_list.jpg) !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}

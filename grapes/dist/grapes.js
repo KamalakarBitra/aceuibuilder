@@ -23662,6 +23662,7 @@ function getUrlParameter(sParam) {
 
                             defaultCommands['tlb-delete'] = {
                                 run: function run(ed) {
+                                    window.parent.$('#deleteComp').click()
                                     return ed.runCommand('core:component-delete');
                                 }
                             };
@@ -52293,6 +52294,7 @@ function getUrlParameter(sParam) {
                             em && em.trigger('sorter:drag:validation', validResult);
 
                             if (!validResult.valid && this.targetP) {
+                                console.log(52296, "not Valid");
                                 return this.dimsFromTarget(this.targetP, rX, rY);
                             }
 
@@ -52312,6 +52314,7 @@ function getUrlParameter(sParam) {
                             var targetParent = this.targetP;
 
                             if (targetParent && this.validTarget(targetParent).valid) {
+                                console.log(52317, "not Valid");
                                 dims = this.cacheDimsP;
                                 this.target = targetParent;
                             }
@@ -52359,6 +52362,7 @@ function getUrlParameter(sParam) {
                             em && em.trigger('sorter:drag:validation', validResult);
 
                             if (!validResult.valid && targetParent) {
+                                console.log(52364, "not Valid");
                                 return this.getTargetFromEl(targetParent);
                             }
 
@@ -52371,6 +52375,7 @@ function getUrlParameter(sParam) {
                             targetParent = this.closest(target, containerSel);
 
                             if (targetParent && this.validTarget(targetParent).valid) {
+                                console.log(52378, "not Valid");
                                 target = targetParent;
                             }
                         }

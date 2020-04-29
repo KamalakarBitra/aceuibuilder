@@ -2,17 +2,14 @@ blocks = [
 	{
 		id: 'text',
 		label: 'Text Field',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			tagName: 'input',
 			components: '',
-			type: "fields",
-
 			attributes: {
 				readonly: 'readonly',
 				ty: 'text_field_component',
 				property: 'absolute'
-
 			},
 			resizable: {
 				tl: 0, // Top left
@@ -21,7 +18,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: "prop1",
+			type: "field",
 			style: {
 				width: '100%'
 
@@ -32,12 +29,10 @@ blocks = [
 	{
 		id: 'date',
 		label: 'Date Field',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			tagName: 'input',
 			components: '',
-			type: "fields",
-
 			attributes: {
 				readonly: 'readonly',
 				ty: 'date_field_component',
@@ -51,7 +46,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: "prop1",
+			type: "field",
 			style: {
 				width: '100%'
 			}
@@ -61,12 +56,10 @@ blocks = [
 	{
 		id: 'datetime',
 		label: 'Date Time Field',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			tagName: 'input',
 			components: '',
-			type: "fields",
-
 			attributes: {
 				readonly: 'readonly',
 				ty: 'datetime_field_component',
@@ -80,7 +73,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: "prop1",
+			type: "field",
 			style: {
 				width: '100%'
 			}
@@ -90,12 +83,10 @@ blocks = [
 	{
 		id: 'number',
 		label: 'Number Field',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			tagName: 'input',
 			components: '',
-			type:"fields",
-			
 			attributes: {
 				readonly: 'readonly',
 				ty: 'number_field_component',
@@ -108,7 +99,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type:"prop1",
+			type: "field",
 			style: {
 				width: '100%'
 			}
@@ -118,11 +109,11 @@ blocks = [
 	{
 		id: 'radio',
 		label: 'Radio Field',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			tagName: 'radio',
 			components: '',
-			type:"fields",
+			type: "field",
 			
 			attributes: {
 				readonly: 'readonly',
@@ -135,15 +126,14 @@ blocks = [
 				tr: 0, // Top right
 				cl: 0, // Center left
 				bl: 0, // Bottom left
-			},
-			type:"prop1"
+			}
 		},
 		image: "radio.svg",
 	},
 	{
 		id: 2, 
 		label: 'select',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			tagName: 'input',
 			components: '',
@@ -159,7 +149,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: 'prop1',
+			type: 'field',
 			style: {
 				width: '100%'
 			}
@@ -170,7 +160,7 @@ blocks = [
 	{
 		id: 'textarea',
 		label: 'Textarea Field',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			tagName: 'textarea',
 			components: '',
@@ -186,7 +176,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type:"prop1",
+			type: "field",
 			style: {
 				width: '100%'
 			}
@@ -197,7 +187,7 @@ blocks = [
 	{
 		id: 'checkbox',
 		label: 'Checkbox Field',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			tagName: 'checkbox',
 			components: '',
@@ -212,14 +202,14 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: 'prop1',
+			type: 'field',
 		},
 		image: "check-box.svg",
 	},
 	{
 		id: 'upload',
 		label: 'Upload Field',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			tagName: 'input',
 			components: '',
@@ -235,7 +225,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: 'prop1',
+			type: 'field',
 			style: {
 				width: '100%'
 			}
@@ -245,7 +235,7 @@ blocks = [
 	{
 		id: 'custom_table',
 		label: 'Custom Table',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			droppable:'true',
 			tagName: 'div',
@@ -261,7 +251,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: 'prop1',
+			type: 'field',
 			droppable: 'false'
 
 		},
@@ -270,7 +260,7 @@ blocks = [
 	{
 		id: 9,
 		label: '1 column',
-		category: 'basic',
+		category: 'Layouts',
 		content: {
 			tagName: "div",
 			components: '<div class="col-lg-12" ty="1column"></div>',
@@ -287,7 +277,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type:"prop1",
+			type: "column",
 			style: {
 				width: '100%',
 				height: '100px',
@@ -301,7 +291,7 @@ blocks = [
 	{
 		id: 10,
 		label: '2 column',
-		category: 'basic',
+		category: 'Layouts',
 		content: {
 			tagName: "div",
 			components: '<div class="col-sm-6" ty="2column"></div><div class="col-sm-6" ty="2column"></div>',
@@ -319,7 +309,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type:"prop1",
+			type: "column",
 			style: {
 				width: '100%',
 				height: '100px',
@@ -333,7 +323,7 @@ blocks = [
 	{
 		id: 11,
 		label: '3 column',
-		category: 'basic',
+		category: 'Layouts',
 		content: {
 			tagName: "div",
 			components: '<div class="col-sm-4" ty="3column"></div><div class="col-sm-4" ty="3column"></div><div class="col-sm-4" ty="3column"></div>',
@@ -351,7 +341,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type:"prop1",
+			type: "column",
 			style: {
 				width: '100%',
 				height: '100px',
@@ -365,7 +355,7 @@ blocks = [
 	{
 		id: 12,
 		label: '4 column',
-		category: 'basic',
+		category: 'Layouts',
 		content: {
 			tagName: "div",	
 			components: '<div class="col-sm-3" ty="4column"></div><div class="col-sm-3" ty="4column"></div><div class="col-sm-3" ty="4column"></div><div class="col-sm-3" ty="4column"></div>',
@@ -383,7 +373,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type:"prop1",
+			type: "column",
 			style: {
 				width: '90%',
 				height: '100px',
@@ -396,10 +386,32 @@ blocks = [
 	{
 		id: 'button',
 		label: 'Button',
-		category: 'fields',
+		category: 'Basic Components',
+		content: {
+			tagName: "button",
+			components: '',
+			content: "Button",
+			attributes: {
+				ty: 'button_type_component',
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type: "button",
+		},
+		// icon: 'fa fa-minus-square-o',
+		image: "group 3.svg",
+	},
+	{
+		id: 'button_grid',
+		label: 'Button Grid',
+		category: 'Layouts',
 		content: {
 			tagName: "div",
-			components: "button",
 			attributes: {
 				ty: 'buttons_grid',
 				property:'absolute'
@@ -411,15 +423,16 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type:"prop1",
+			droppable: '[data-gjs-type="button"]'
 		},
+		type: "button_area",
 		// icon: 'fa fa-minus-square-o',
-		image: "group 3.svg",
+		image: "group 3.svg"
 	},
 	{
 		id: 16,
 		label: 'image',
-		category: 'components',
+		category: 'Basic Components',
 		content: {
 			tagName: "img",
 			components: "",
@@ -440,20 +453,19 @@ blocks = [
 				height:'100%'
 			}
 		},
-		type:"prop1",
-		
+		type: "image",
 		image: "Image.svg",
 	},
 	{
 		id: 14,
 		label: 'Email',
-		category: 'components',
+		category: 'Micro Frontend',
 		content: {
 			tagName: "div",
 			components: "email",
 			attributes: {
 				readonly: 'readonly',
-				ty: 'email_microApp',
+				ty: 'email_mf_component',
 				property:'absolute'
 			},
 			resizable: {
@@ -463,7 +475,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: 'prop1',
+			type: 'microfrontend',
 			style: {
 				width: '100%'
 			}
@@ -471,6 +483,202 @@ blocks = [
 		},
 		image: "mail.svg",
 		type:'plus'
+	},
+	{
+		id: 'training',
+		label: 'Training',
+		category: 'Micro Frontend',
+		content: {
+			tagName: "div",
+			components: "training",
+			attributes: {
+				readonly: 'readonly',
+				ty: 'training_mf_component',
+				property: 'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type: 'microfrontend',
+			style: {
+				width: '100%'
+			}
+
+		},
+		image: "training.svg",
+		type: 'plus'
+	},
+	{
+		id: 'string_card',
+		label: 'String Card',
+		category: 'Stats',
+		content: {
+			tagName: "div",
+			components: "String Card",
+			attributes: {
+				readonly: 'readonly',
+				ty: 'string_type_cards_component',
+				property: 'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type: 'stat_card',
+			style: {
+				width: '100%'
+			}
+
+		},
+		image: "training.svg",
+		type: 'plus'
+	},
+	{
+		id: 'text_card',
+		label: 'Text Card',
+		category: 'Stats',
+		content: {
+			tagName: "div",
+			components: "Text Card",
+			attributes: {
+				readonly: 'readonly',
+				ty: 'text_type_cards_component',
+				property: 'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type: 'stat_card',
+			style: {
+				width: '100%'
+			}
+
+		},
+		image: "training.svg",
+		type: 'plus'
+	},
+	{
+		id: 'chart_card',
+		label: 'Chart Card',
+		category: 'Stats',
+		content: {
+			tagName: "div",
+			components: "Chart Card",
+			attributes: {
+				readonly: 'readonly',
+				ty: 'chart_type_cards_component',
+				property: 'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type: 'stat_card',
+			style: {
+				width: '100%'
+			}
+
+		},
+		image: "training.svg",
+		type: 'plus'
+	},
+	{
+		id: 'click_card',
+		label: 'Click Card',
+		category: 'Stats',
+		content: {
+			tagName: "div",
+			components: "Click Card",
+			attributes: {
+				readonly: 'readonly',
+				ty: 'click_type_cards_component',
+				property: 'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type: 'stat_card',
+			style: {
+				width: '100%'
+			}
+
+		},
+		image: "training.svg",
+		type: 'plus'
+	},
+	{
+		id: 'table_card',
+		label: 'Table Card',
+		category: 'Stats',
+		content: {
+			tagName: "div",
+			components: "Table Card",
+			attributes: {
+				readonly: 'readonly',
+				ty: 'table_type_cards_component',
+				property: 'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type: 'stat_card',
+			style: {
+				width: '100%'
+			}
+
+		},
+		image: "training.svg",
+		type: 'plus'
+	},
+	{
+		id: 'flip_card',
+		label: 'Flip Card',
+		category: 'Stats',
+		content: {
+			tagName: "div",
+			components: "Flip Card",
+			attributes: {
+				readonly: 'readonly',
+				ty: 'flip_type_cards_component',
+				property: 'absolute'
+			},
+			resizable: {
+				tl: 0, // Top left
+				tc: 0, // Top center
+				tr: 0, // Top right
+				cl: 0, // Center left
+				bl: 0, // Bottom left
+			},
+			type: 'stat_card',
+			style: {
+				width: '100%'
+			}
+
+		},
+		image: "training.svg",
+		type: 'plus'
 	},
 	{
 		id: 17,
@@ -485,32 +693,9 @@ blocks = [
 		image: "Ap mesh.svg",
 	},
 	{
-		id: 19,
-		label: 'form',
-		category: 'fields',
-		content: {
-			attributes:{
-				ty:'form',
-				property:'absolute'
-			},
-			tagName: "form",
-			components: '',
-			type:"prop1",
-			resizable: {
-				tl: 0, // Top left
-				tc: 0, // Top center
-				tr: 0, // Top right
-				cl: 0, // Center left
-				bl: 0, // Bottom left
-			},
-		},
-		
-		image: "form.svg",
-	},
-	{
 		id: 20,
 		label: 'Timer',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			tagName: "div",
 			components: "Timer",
@@ -526,7 +711,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: 'prop1',
+			type: 'timer',
 			style: {
 				width: '100%'
 			}
@@ -537,7 +722,7 @@ blocks = [
 	{
 		id: 21,
 		label: 'Queue List',
-		category: 'fields',
+		category: 'Basic Components',
 		content: {
 			tagName: "div",
 			components: "Queue List",
@@ -553,7 +738,7 @@ blocks = [
 				cl: 0, // Center left
 				bl: 0, // Bottom left
 			},
-			type: 'prop1',
+			type: 'queue_list',
 			style: {
 				width: '100%'
 			}
@@ -563,44 +748,3 @@ blocks = [
 		type:'plus'
 	},
 ]
-
-
-
-
-
-
-properties = [
-	{
-		id: 'prop1',
-		prop: [
-			{
-				type: 'text',
-				name: 'display_name',
-				label: 'Display Name',
-				changeProp: 0,
-			},
-			{
-				type: 'text',
-				name: 'unique_name',
-				label: 'Unique Name',
-				command:'somecommand'
-			},
-			{
-				type: 'select',
-				label: 'Type',
-				name: 'type',
-				options: [
-					'Text', 'Email', 'Password', 'Number', 'hello'
-				],
-			}
-		]
-	},
-]
-
-
-
-
-
-
-
-
